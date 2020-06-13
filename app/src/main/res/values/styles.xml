@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base application theme. In this Jetpack Compose sample app, these colors
+ don't affect the Composable functions, just the color of the Status Bar.
+ For the colors used by the Composable functions, see Theme.kt -->
+    <style name="Theme.Charts" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/red700</item>
+        <item name="colorPrimaryDark">@color/red900</item>
+        <item name="colorAccent">@color/red700</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
+    </style>
+</resources>

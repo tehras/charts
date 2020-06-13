@@ -1,6 +1,6 @@
 android {
     compileSdkVersion Versions.targetSdk
-    buildToolsVersion '29.0.3'
+    buildToolsVersion Versions.buildVersion
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

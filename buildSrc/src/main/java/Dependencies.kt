@@ -2,7 +2,7 @@
 
 object Versions {
     const val compose = "0.1.0-dev13"
-    const val kotlin = "1.4-M2"
+    const val kotlin = "1.3.71"
     const val targetSdk = 29
     const val buildVersion = "29.0.3"
 }
@@ -20,7 +20,6 @@ object Compose {
 
 object Android {
     const val appcompat = "androidx.appcompat:appcompat:1.1.0"
-    const val material = "com.google.android.material:material:1.1.0"
 }
 
 object Kotlin {
