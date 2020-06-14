@@ -5,12 +5,18 @@ import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.Icon
 import androidx.ui.foundation.Text
+import androidx.ui.foundation.shape.corner.CircleShape
 import androidx.ui.layout.*
 import androidx.ui.material.*
 import androidx.ui.material.icons.Icons.Filled
+import androidx.ui.material.icons.filled.Add
 import androidx.ui.material.icons.filled.ArrowBack
+import androidx.ui.material.icons.filled.Remove
+import androidx.ui.text.TextStyle
+import androidx.ui.text.font.FontWeight
 import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
+import androidx.ui.unit.sp
 import com.github.tehras.charts.piechart.PieChart
 import com.github.tehras.charts.piechart.PieChartData
 import com.github.tehras.charts.theme.Margins
@@ -53,7 +59,7 @@ fun PieChartScreenContent(modifier: Modifier) {
 
 @Composable
 private fun PieChartRow(pieChartData: PieChartData) {
-    Row(modifier = Modifier.fillMaxWidth().height(150.dp)) {
+    Row(modifier = Modifier.fillMaxWidth().height(150.dp).padding(vertical = Margins.vertical)) {
         PieChart(pieChartData = pieChartData)
     }
 }
@@ -86,19 +92,34 @@ private fun AddOrRemoveSliceRow(pieChartDataModel: PieChartDataModel) {
             .fillMaxWidth()
             .padding(vertical = Margins.vertical),
         verticalGravity = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.Center
     ) {
-        TextButton(
-            enabled = pieChartDataModel.slices.size < 9,
-            onClick = { pieChartDataModel.addSlice() }
-        ) {
-            Text("Add slice")
-        }
-        TextButton(
+        Button(
             enabled = pieChartDataModel.slices.size > 3,
-            onClick = { pieChartDataModel.removeSlice() }
+            onClick = { pieChartDataModel.removeSlice() },
+            shape = CircleShape
         ) {
-            Text("Remove slice")
+            Icon(Filled.Remove)
+        }
+        Row(
+            modifier = Modifier.padding(horizontal = Margins.horizontal),
+            verticalGravity = Alignment.CenterVertically
+        ) {
+            Text(text = "Slices: ")
+            Text(
+                text = pieChartDataModel.slices.count().toString(),
+                style = TextStyle(
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 18.sp
+                )
+            )
+        }
+        Button(
+            enabled = pieChartDataModel.slices.size < 9,
+            onClick = { pieChartDataModel.addSlice() },
+            shape = CircleShape
+        ) {
+            Icon(Filled.Add)
         }
     }
 }
