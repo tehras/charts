@@ -4,12 +4,7 @@ import androidx.compose.Composable
 import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.Text
-import androidx.ui.foundation.VerticalScroller
-import androidx.ui.layout.Arrangement
-import androidx.ui.layout.Row
-import androidx.ui.layout.RowScope.gravity
-import androidx.ui.layout.fillMaxSize
-import androidx.ui.layout.padding
+import androidx.ui.layout.*
 import androidx.ui.material.Button
 import androidx.ui.material.Scaffold
 import androidx.ui.material.TopAppBar
@@ -22,35 +17,24 @@ import com.github.tehras.charts.ui.ChartScreenStatus
 fun SelectChartScreen() {
     Scaffold(
         topAppBar = { TopAppBar(title = { Text(text = "Select Chart") }) },
-        bodyContent = { modifier ->
-            SelectChartScreenContent(
-                modifier
-            )
-        }
+        bodyContent = { modifier -> SelectChartScreenContent(modifier) }
     )
 }
 
 @Composable
 private fun SelectChartScreenContent(modifier: Modifier) {
-    VerticalScroller(modifier = modifier.fillMaxSize()) {
-        PieChartRow()
-    }
+    Column(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalGravity = Alignment.CenterHorizontally
+    ) { PieChartRow() }
 }
 
 @Composable
 private fun PieChartRow() {
-    Row(
-        modifier = Modifier
-            .padding(horizontal = Margins.horizontal, vertical = Margins.vertical)
-            .gravity(Alignment.CenterVertically),
-        horizontalArrangement = Arrangement.Center
-    ) {
+    Row(modifier = Modifier.padding(horizontal = Margins.horizontal, vertical = Margins.vertical)) {
         Button(
-            onClick = {
-                ChartScreenStatus.navigateTo(
-                    ChartScreen.Pie
-                )
-            },
+            onClick = { ChartScreenStatus.navigateTo(ChartScreen.Pie) },
             text = { Text(text = "Pie") }
         )
     }
@@ -58,6 +42,4 @@ private fun PieChartRow() {
 
 @Preview
 @Composable
-fun SelectChartScreenPreview() {
-    SelectChartScreen()
-}
+fun SelectChartScreenPreview() = SelectChartScreen()
