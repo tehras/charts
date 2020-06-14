@@ -1,9 +1,6 @@
 package com.github.tehras.charts.ui.pie
 
 import androidx.compose.Composable
-import androidx.compose.getValue
-import androidx.compose.mutableStateOf
-import androidx.compose.setValue
 import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.Icon
@@ -32,17 +29,13 @@ fun PieChartScreen() {
                 title = { Text(text = "Pie Chart") }
             )
         },
-        bodyContent = { modifier ->
-            PieChartScreenContent(
-                modifier
-            )
-        }
+        bodyContent = { modifier -> PieChartScreenContent(modifier) }
     )
 }
 
 @Composable
 fun PieChartScreenContent(modifier: Modifier) {
-    var sliceThickness by mutableStateOf(10f)
+    val pieChartDataModel = PieChartDataModel()
 
     Column(
         modifier = modifier.padding(
@@ -50,26 +43,18 @@ fun PieChartScreenContent(modifier: Modifier) {
             vertical = Margins.vertical
         )
     ) {
-        PieChartRow(sliceThickness)
-        SliceThicknessRow(sliceThickness) {
-            sliceThickness = it
+        PieChartRow(pieChartDataModel.pieChartData)
+        SliceThicknessRow(pieChartDataModel.thickness) {
+            pieChartDataModel.thickness = it
         }
-        AddOrRemoveSliceRow()
+        AddOrRemoveSliceRow(pieChartDataModel)
     }
 }
 
 @Composable
-private fun PieChartRow(sliceThickness: Float) {
-    Row(
-        modifier = Modifier.fillMaxWidth()
-            .height(150.dp)
-    ) {
-        PieChart(
-            pieChartData = PieChartData(
-                slices = SliceGenerator.slices,
-                sliceThickness = sliceThickness
-            )
-        )
+private fun PieChartRow(pieChartData: PieChartData) {
+    Row(modifier = Modifier.fillMaxWidth().height(150.dp)) {
+        PieChart(pieChartData = pieChartData)
     }
 }
 
@@ -88,16 +73,14 @@ private fun SliceThicknessRow(sliceThickness: Float, onValueUpdated: (Float) -> 
         )
         Slider(
             value = sliceThickness,
-            onValueChange = {
-                onValueUpdated(it)
-            },
+            onValueChange = { onValueUpdated(it) },
             valueRange = 10f.rangeTo(100f)
         )
     }
 }
 
 @Composable
-private fun AddOrRemoveSliceRow() {
+private fun AddOrRemoveSliceRow(pieChartDataModel: PieChartDataModel) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -106,14 +89,14 @@ private fun AddOrRemoveSliceRow() {
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         TextButton(
-            enabled = SliceGenerator.slices.size < 9,
-            onClick = { SliceGenerator.addSlice() }
+            enabled = pieChartDataModel.slices.size < 9,
+            onClick = { pieChartDataModel.addSlice() }
         ) {
             Text("Add slice")
         }
         TextButton(
-            enabled = SliceGenerator.slices.size > 3,
-            onClick = { SliceGenerator.removeSlice() }
+            enabled = pieChartDataModel.slices.size > 3,
+            onClick = { pieChartDataModel.removeSlice() }
         ) {
             Text("Remove slice")
         }
