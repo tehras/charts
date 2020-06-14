@@ -5,6 +5,8 @@ import androidx.ui.animation.Crossfade
 import androidx.ui.material.MaterialTheme
 import androidx.ui.material.Surface
 import com.github.tehras.charts.theme.ChartsTheme
+import com.github.tehras.charts.ui.pie.PieChartScreen
+import com.github.tehras.charts.ui.selector.SelectChartScreen
 
 @Composable
 fun ChartsApp() {
@@ -19,7 +21,7 @@ fun AppContent() {
         Surface(color = MaterialTheme.colors.background) {
             when(screen) {
                 ChartScreen.SelectChart -> SelectChartScreen()
-                ChartScreen.Pie -> TODO()
+                ChartScreen.Pie -> PieChartScreen()
                 ChartScreen.Line -> TODO()
             }
         }

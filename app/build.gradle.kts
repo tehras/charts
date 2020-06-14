@@ -14,6 +14,7 @@ dependencies {
     implementation(Compose.core)
     implementation(Compose.layout)
     implementation(Compose.material)
+    implementation(Compose.materialIconsExt)
     implementation(Compose.foundation)
     implementation(Compose.runtime)
     implementation(project(":lib:pie"))

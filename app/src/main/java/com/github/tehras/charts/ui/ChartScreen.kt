@@ -17,4 +17,8 @@ object ChartScreenStatus {
     fun navigateTo(screen: ChartScreen) {
         currentChart = screen
     }
+
+    fun navigateHome() {
+        navigateTo(ChartScreen.SelectChart)
+    }
 }

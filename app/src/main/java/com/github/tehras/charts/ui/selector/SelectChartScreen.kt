@@ -1,4 +1,4 @@
-package com.github.tehras.charts.ui
+package com.github.tehras.charts.ui.selector
 
 import androidx.compose.Composable
 import androidx.ui.core.Alignment
@@ -15,24 +15,30 @@ import androidx.ui.material.Scaffold
 import androidx.ui.material.TopAppBar
 import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.theme.Margins
+import com.github.tehras.charts.ui.ChartScreen
+import com.github.tehras.charts.ui.ChartScreenStatus
 
 @Composable
 fun SelectChartScreen() {
     Scaffold(
         topAppBar = { TopAppBar(title = { Text(text = "Select Chart") }) },
-        bodyContent = { modifier -> SelectChartScreenContent(modifier) }
+        bodyContent = { modifier ->
+            SelectChartScreenContent(
+                modifier
+            )
+        }
     )
 }
 
 @Composable
-fun SelectChartScreenContent(modifier: Modifier) {
+private fun SelectChartScreenContent(modifier: Modifier) {
     VerticalScroller(modifier = modifier.fillMaxSize()) {
         PieChartRow()
     }
 }
 
 @Composable
-fun PieChartRow() {
+private fun PieChartRow() {
     Row(
         modifier = Modifier
             .padding(horizontal = Margins.horizontal, vertical = Margins.vertical)
@@ -40,7 +46,11 @@ fun PieChartRow() {
         horizontalArrangement = Arrangement.Center
     ) {
         Button(
-            onClick = { ChartScreenStatus.navigateTo(ChartScreen.Pie) },
+            onClick = {
+                ChartScreenStatus.navigateTo(
+                    ChartScreen.Pie
+                )
+            },
             text = { Text(text = "Pie") }
         )
     }
