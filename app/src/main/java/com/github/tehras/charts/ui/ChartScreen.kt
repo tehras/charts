@@ -7,6 +7,7 @@ import androidx.compose.setValue
 sealed class ChartScreen {
     object SelectChart : ChartScreen()
     object Pie : ChartScreen()
+    object Bar : ChartScreen()
     object Line : ChartScreen()
 }
 

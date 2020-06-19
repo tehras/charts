@@ -3,8 +3,8 @@ package com.github.tehras.charts.piechart
 import androidx.ui.geometry.Rect
 import androidx.ui.geometry.Size
 
-object PieChartUtils {
-    internal fun calculateDrawableArea(
+internal object PieChartUtils {
+    fun calculateDrawableArea(
         size: Size,
         pieChartData: PieChartData
     ): Rect {
@@ -20,13 +20,13 @@ object PieChartUtils {
         )
     }
 
-    internal  fun calculateSectorThickness(size: Size, pieChartData: PieChartData): Float {
+    fun calculateSectorThickness(size: Size, pieChartData: PieChartData): Float {
         val minSize = minOf(size.width, size.height)
 
         return minSize * (pieChartData.sliceThickness / 200f)
     }
 
-    internal  fun calculateAngle(
+    fun calculateAngle(
         sliceLength: Float,
         totalLength: Float,
         progress: Float

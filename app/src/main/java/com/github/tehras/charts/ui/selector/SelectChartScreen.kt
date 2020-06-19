@@ -27,7 +27,10 @@ private fun SelectChartScreenContent(modifier: Modifier) {
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalGravity = Alignment.CenterHorizontally
-    ) { PieChartRow() }
+    ) {
+        PieChartRow()
+        BarChartRow()
+    }
 }
 
 @Composable
@@ -35,7 +38,17 @@ private fun PieChartRow() {
     Row(modifier = Modifier.padding(horizontal = Margins.horizontal, vertical = Margins.vertical)) {
         Button(
             onClick = { ChartScreenStatus.navigateTo(ChartScreen.Pie) },
-            text = { Text(text = "Pie") }
+            text = { Text(text = "Pie Chart") }
+        )
+    }
+}
+
+@Composable
+private fun BarChartRow() {
+    Row(modifier = Modifier.padding(horizontal = Margins.horizontal, vertical = Margins.vertical)) {
+        Button(
+            onClick = { ChartScreenStatus.navigateTo(ChartScreen.Bar) },
+            text = { Text(text = "Bar Chart") }
         )
     }
 }

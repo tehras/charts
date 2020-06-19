@@ -40,7 +40,7 @@ fun PieChartScreen() {
 }
 
 @Composable
-fun PieChartScreenContent(modifier: Modifier) {
+private fun PieChartScreenContent(modifier: Modifier) {
     val pieChartDataModel = PieChartDataModel()
 
     Column(

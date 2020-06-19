@@ -3,7 +3,6 @@ package com.github.tehras.charts.piechart
 import androidx.animation.AnimationBuilder
 import androidx.animation.TweenBuilder
 import androidx.compose.Composable
-import androidx.compose.onCommit
 import androidx.compose.onPreCommit
 import androidx.ui.animation.animatedFloat
 import androidx.ui.core.Modifier
@@ -11,6 +10,7 @@ import androidx.ui.foundation.Canvas
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.drawscope.drawCanvas
 import androidx.ui.layout.fillMaxSize
+import androidx.ui.res.integerResource
 import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.piechart.PieChartUtils.calculateAngle
 import com.github.tehras.charts.piechart.PieChartUtils.calculateDrawableArea
@@ -20,15 +20,15 @@ import com.github.tehras.charts.piechart.PieChartUtils.calculateSectorThickness
 fun PieChart(
     pieChartData: PieChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
-    animation: AnimationBuilder<Float> = DefaultChartAnimation
+    animation: AnimationBuilder<Float> = DefaultPieChartAnimation
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)
 
     // When slices value changes we want to re-animated the chart.
-    onCommit(pieChartData.slices) {
+    onPreCommit(pieChartData.slices) {
         transitionProgress.snapTo(0f)
+        transitionProgress.animateTo(1f, anim = animation)
     }
-    transitionProgress.animateTo(1f, anim = animation)
 
     DrawChart(
         pieChartData = pieChartData,
@@ -45,7 +45,7 @@ private fun DrawChart(
 ) {
     val slices = pieChartData.slices
 
-    Canvas(modifier = modifier, onCanvas = {
+    Canvas(modifier = modifier) {
         drawCanvas { canvas, size ->
             val rect = calculateDrawableArea(size, pieChartData)
             var startArc = 0f
@@ -75,15 +75,13 @@ private fun DrawChart(
                 startArc += arc
             }
         }
-    })
+    }
 }
 
 @Composable
-private val DefaultChartAnimation: AnimationBuilder<Float>
-    get() {
-        return TweenBuilder<Float>().apply {
-            duration = 100
-        }
+private val DefaultPieChartAnimation: AnimationBuilder<Float>
+    get() = TweenBuilder<Float>().apply {
+        duration = +integerResource(id = android.R.integer.config_mediumAnimTime)
     }
 
 @Preview

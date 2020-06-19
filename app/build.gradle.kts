@@ -17,7 +17,9 @@ dependencies {
     implementation(Compose.materialIconsExt)
     implementation(Compose.foundation)
     implementation(Compose.runtime)
+
     implementation(project(":lib:pie"))
+    implementation(project(":lib:bar"))
 
     debugImplementation(Compose.tooling)
 }
