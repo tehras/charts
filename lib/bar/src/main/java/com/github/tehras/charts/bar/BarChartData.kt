@@ -12,13 +12,8 @@ data class BarChartData(
     val bars: List<Bar>,
     val xAxis: XAxis = XAxis(),
     val yAxis: YAxis = YAxis(),
-    val valueLabelFormat: LabelFormat = LabelFormat(),
-    val topOffset: Float = 20f
+    val valueLabelFormat: LabelFormat = LabelFormat()
 ) {
-    init {
-        require(topOffset in 10f..50f)
-    }
-
     val maxBarValue = calculateMaxBarValue()
 
     private fun calculateMaxBarValue(): Float {

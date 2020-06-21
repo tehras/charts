@@ -4,6 +4,7 @@ import androidx.compose.getValue
 import androidx.compose.mutableStateOf
 import androidx.compose.setValue
 import androidx.ui.graphics.Color
+import androidx.ui.graphics.Color.Companion.White
 import com.github.tehras.charts.bar.BarChartData
 import com.github.tehras.charts.bar.BarChartData.Bar
 import com.github.tehras.charts.bar.BarChartData.LabelFormat.DrawLocation
@@ -46,13 +47,14 @@ class BarChartDataModel {
             )
         )
     )
+
     val bars: List<Bar>
         get() = barChartData.bars
     var valueLocation: DrawLocation
         get() = barChartData.valueLabelFormat.drawLocation
         set(value) {
             val color = when (value) {
-                Inside -> Color.White
+                Inside -> White
                 Outside, XAxis -> Color.Black
             }
 

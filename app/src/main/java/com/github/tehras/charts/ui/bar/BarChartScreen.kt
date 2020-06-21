@@ -1,7 +1,6 @@
 package com.github.tehras.charts.ui.bar
 
 import androidx.compose.Composable
-import androidx.ui.core.Alignment
 import androidx.ui.core.Alignment.Companion.CenterHorizontally
 import androidx.ui.core.Alignment.Companion.CenterVertically
 import androidx.ui.core.Modifier
@@ -105,7 +104,7 @@ fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = Margins.vertical),
-        verticalGravity = Alignment.CenterVertically,
+        verticalGravity = CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         Button(
@@ -115,7 +114,7 @@ fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
         ) { Icon(Filled.Remove) }
         Row(
             modifier = Modifier.padding(horizontal = Margins.horizontal),
-            verticalGravity = Alignment.CenterVertically
+            verticalGravity = CenterVertically
         ) {
             Text(text = "Bars: ")
             Text(
@@ -136,7 +135,11 @@ fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
 
 @Composable
 private fun BarChartRow(barChartData: BarChartData) {
-    Row(modifier = Modifier.fillMaxWidth().height(250.dp).padding(vertical = Margins.vertical)) {
+    Row(
+        modifier = Modifier.fillMaxWidth()
+            .height(250.dp)
+            .padding(vertical = Margins.verticalLarge)
+    ) {
         BarChart(barChartData = barChartData)
     }
 }

@@ -19,6 +19,7 @@ import com.github.tehras.charts.bar.BarChartData.LabelFormat.DrawLocation.*
 import com.github.tehras.charts.bar.BarChartUtils.axisAreas
 import com.github.tehras.charts.bar.BarChartUtils.barDrawableArea
 import com.github.tehras.charts.bar.BarChartUtils.forEachWithArea
+import com.github.tehras.charts.bar.BarChartUtils.topOffset
 
 @Composable
 fun BarChart(
@@ -114,13 +115,13 @@ fun DrawScope.drawXAxis(
     )
 }
 
-fun drawBars(
+fun DrawScope.drawBars(
     canvas: Canvas,
     barDrawableArea: Rect,
     barChartData: BarChartData,
     progress: Float
 ) {
-    barChartData.forEachWithArea(barDrawableArea, progress) { barArea, bar ->
+    barChartData.forEachWithArea(this, barDrawableArea, progress) { barArea, bar ->
         canvas.drawRect(barArea, bar.paint)
     }
 }
@@ -131,7 +132,7 @@ fun DrawScope.drawBarLabels(
     barChartData: BarChartData,
     progress: Float
 ) {
-    barChartData.forEachWithArea(barDrawableArea, progress) { barArea, bar ->
+    barChartData.forEachWithArea(this, barDrawableArea, progress) { barArea, bar ->
         val xCenter = barArea.left + (barArea.width / 2)
         val labelFormat = barChartData.valueLabelFormat
         val yCenter = when (labelFormat.drawLocation) {
@@ -151,7 +152,7 @@ fun DrawScope.drawValueLabels(
 ) {
     val yAxis = barChartData.yAxis
     val textHeight = yAxis.textSize.toPx().value
-    val topOffset = (yAxisArea.height * (barChartData.topOffset / 100f))
+    val topOffset = barChartData.topOffset(this)
     val top = yAxisArea.top + topOffset
     val maxHeight = yAxisArea.height - topOffset
     val labelCount = ((maxHeight / textHeight) / yAxis.ratio).toInt()

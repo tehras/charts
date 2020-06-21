@@ -4,7 +4,7 @@ import androidx.ui.geometry.Rect
 import androidx.ui.geometry.Size
 import androidx.ui.unit.Density
 import androidx.ui.unit.dp
-import com.github.tehras.charts.bar.BarChartData.LabelFormat.DrawLocation.XAxis
+import com.github.tehras.charts.bar.BarChartData.LabelFormat.DrawLocation.*
 
 internal object BarChartUtils {
     fun axisAreas(
@@ -55,6 +55,7 @@ internal object BarChartUtils {
     }
 
     fun BarChartData.forEachWithArea(
+        density: Density,
         barDrawableArea: Rect,
         progress: Float,
         block: (barArea: Rect, bar: BarChartData.Bar) -> Unit
@@ -66,7 +67,8 @@ internal object BarChartUtils {
         bars.forEachIndexed { index, bar ->
             val left = barDrawableArea.left + (index * widthOfBarArea)
             val height = barDrawableArea.height
-            val barHeight = (height - ((topOffset / 100f) * height)) * progress
+
+            val barHeight = (height - ((topOffset(density) / 100f) * height)) * progress
 
             val barArea = Rect(
                 left = left + offsetOfBar,
@@ -78,4 +80,11 @@ internal object BarChartUtils {
             block(barArea, bar)
         }
     }
+
+    fun BarChartData.topOffset(density: Density) =
+        when (valueLabelFormat.drawLocation) {
+            Outside -> with(density) { 3f / 2f * valueLabelFormat.textSize.toPx().value }
+            Inside,
+            XAxis -> 0f
+        }
 }
