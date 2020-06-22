@@ -1,7 +1,6 @@
 package com.github.tehras.charts.bar
 
 import androidx.animation.AnimationBuilder
-import androidx.animation.TweenBuilder
 import androidx.compose.Composable
 import androidx.compose.onPreCommit
 import androidx.ui.animation.animatedFloat
@@ -14,18 +13,18 @@ import androidx.ui.graphics.Canvas
 import androidx.ui.graphics.drawscope.DrawScope
 import androidx.ui.graphics.drawscope.drawCanvas
 import androidx.ui.layout.fillMaxSize
-import androidx.ui.res.integerResource
 import com.github.tehras.charts.bar.BarChartData.LabelFormat.DrawLocation.*
 import com.github.tehras.charts.bar.BarChartUtils.axisAreas
 import com.github.tehras.charts.bar.BarChartUtils.barDrawableArea
 import com.github.tehras.charts.bar.BarChartUtils.forEachWithArea
 import com.github.tehras.charts.bar.BarChartUtils.topOffset
+import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 
 @Composable
 fun BarChart(
     barChartData: BarChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
-    animation: AnimationBuilder<Float> = DefaultBarChartAnimation
+    animation: AnimationBuilder<Float> = SimpleChartAnimation
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)
     val resetAnimation = {
@@ -167,9 +166,3 @@ fun DrawScope.drawValueLabels(
         canvas.nativeCanvas.drawText(formattedValue, yRight, yCenter, yAxis.paint(this))
     }
 }
-
-@Composable
-private val DefaultBarChartAnimation: AnimationBuilder<Float>
-    get() = TweenBuilder<Float>().apply {
-        duration = +integerResource(id = android.R.integer.config_mediumAnimTime)
-    }
