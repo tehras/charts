@@ -8,6 +8,8 @@ apply(from = rootProject.file("gradle/configure-android.gradle"))
 apply(from = rootProject.file("gradle/configure-compose.gradle"))
 
 dependencies {
+    api(project(":lib:common"))
+
     implementation(Kotlin.stdLib)
 
     implementation(Compose.animation)

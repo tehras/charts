@@ -3,8 +3,10 @@ package com.github.tehras.charts.bar
 import android.graphics.Paint.Align.RIGHT
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.Paint
-import androidx.ui.graphics.PaintingStyle
-import androidx.ui.unit.*
+import androidx.ui.unit.Density
+import androidx.ui.unit.TextUnit
+import androidx.ui.unit.sp
+import com.github.tehras.charts.piechart.AxisLine
 
 typealias LabelFormatter = (index: Int, value: Float) -> String
 
@@ -75,20 +77,6 @@ data class BarChartData(
 
         fun paint(density: Density) = paint.apply {
             this.textSize = this@YAxis.textSize.value * density.density * density.fontScale
-        }
-    }
-
-    data class AxisLine(
-        val thickness: Dp = 1.5.dp,
-        val color: Color = Color.Gray
-    ) {
-        private val paint = Paint().apply {
-            this.color = this@AxisLine.color
-            this.style = PaintingStyle.stroke
-        }
-
-        fun paint(density: Density) = paint.apply {
-            this.strokeWidth = thickness.value * density.density
         }
     }
 }
