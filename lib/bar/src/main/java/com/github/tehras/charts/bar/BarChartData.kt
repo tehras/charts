@@ -7,6 +7,7 @@ import androidx.ui.unit.Density
 import androidx.ui.unit.TextUnit
 import androidx.ui.unit.sp
 import com.github.tehras.charts.piechart.AxisLine
+import com.github.tehras.charts.piechart.utils.toLegacyInt
 
 typealias LabelFormatter = (index: Int, value: Float) -> String
 

@@ -20,6 +20,7 @@ dependencies {
 
     implementation(project(":lib:pie"))
     implementation(project(":lib:bar"))
+    implementation(project(":lib:line"))
 
     debugImplementation(Compose.tooling)
 }
