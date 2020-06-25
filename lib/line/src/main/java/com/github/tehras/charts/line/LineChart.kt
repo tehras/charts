@@ -14,6 +14,7 @@ import com.github.tehras.charts.line.LineChartUtils.calculatePointLocation
 import com.github.tehras.charts.line.LineChartUtils.calculateXAxisDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.calculateXAxisLabelsDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.calculateYAxisDrawableArea
+import com.github.tehras.charts.line.LineChartUtils.withProgress
 import com.github.tehras.charts.line.line.LineDrawer
 import com.github.tehras.charts.line.line.SolidLineDrawer
 import com.github.tehras.charts.line.point.FilledPointDrawer
@@ -74,21 +75,28 @@ fun LineChart(
                 canvas = canvas,
                 linePath = calculateLinePath(
                     drawableArea = chartDrawableArea,
-                    lineChartData = lineChartData
+                    lineChartData = lineChartData,
+                    transitionProgress = transitionProgress.value
                 )
             )
 
             lineChartData.points.forEachIndexed { index, point ->
-                pointDrawer.drawPoint(
-                    drawScope = this,
-                    canvas = canvas,
-                    offset = calculatePointLocation(
-                        drawableArea = chartDrawableArea,
-                        lineChartData = lineChartData,
-                        point = point,
-                        index = index
+                withProgress(
+                    index = index,
+                    lineChartData = lineChartData,
+                    transitionProgress = transitionProgress.value
+                ) {
+                    pointDrawer.drawPoint(
+                        drawScope = this,
+                        canvas = canvas,
+                        offset = calculatePointLocation(
+                            drawableArea = chartDrawableArea,
+                            lineChartData = lineChartData,
+                            point = point,
+                            index = index
+                        )
                     )
-                )
+                }
             }
 
             // Draw the X Axis line.

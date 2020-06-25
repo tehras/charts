@@ -83,24 +83,64 @@ object LineChartUtils {
         )
     }
 
+    fun withProgress(
+        index: Int,
+        lineChartData: LineChartData,
+        transitionProgress: Float,
+        showWithProgress: (progress: Float) -> Unit
+    ) {
+        val size = lineChartData.points.size
+        val toIndex = (size * transitionProgress).toInt() + 1
+
+        if (index == toIndex) {
+            // Get the left over.
+            val sizeF = lineChartData.points.size.toFloat()
+            val perIndex = (1f / sizeF)
+            val down = (index - 1) * perIndex
+
+            showWithProgress((transitionProgress - down) / perIndex)
+        } else if (index < toIndex) {
+            showWithProgress(1f)
+        }
+    }
+
     fun calculateLinePath(
         drawableArea: Rect,
-        lineChartData: LineChartData
+        lineChartData: LineChartData,
+        transitionProgress: Float
     ): Path = Path().apply {
+        var prevPointLocation: Offset? = null
         lineChartData.points.forEachIndexed { index, point ->
-            val pointLocation = calculatePointLocation(
-                drawableArea = drawableArea,
-                lineChartData = lineChartData,
-                point = point,
-                index = index
-            )
+            withProgress(
+                index = index,
+                transitionProgress = transitionProgress,
+                lineChartData = lineChartData
+            ) { progress ->
+                val pointLocation = calculatePointLocation(
+                    drawableArea = drawableArea,
+                    lineChartData = lineChartData,
+                    point = point,
+                    index = index
+                )
 
-            // First point we want the path to move to.
-            if (index == 0) {
-                moveTo(pointLocation.dx, pointLocation.dy)
-            } else {
-                // Otherwise we just line to.
-                lineTo(pointLocation.dx, pointLocation.dy)
+                if (index == 0) {
+                    moveTo(pointLocation.dx, pointLocation.dy)
+                } else {
+                    if (progress <= 1f) {
+                        // We have to change the `dy` based on the progress
+                        val prevX = prevPointLocation!!.dx
+                        val prevY = prevPointLocation!!.dy
+
+                        val dx = (pointLocation.dx - prevX) * progress + prevX
+                        val dy = (pointLocation.dy - prevY) * progress + prevY
+
+                        lineTo(dx, dy)
+                    } else {
+                        lineTo(pointLocation.dx, pointLocation.dy)
+                    }
+                }
+
+                prevPointLocation = pointLocation
             }
         }
     }
