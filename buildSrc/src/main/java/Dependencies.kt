@@ -1,7 +1,7 @@
 @file:JvmName("Deps")
 
 object Versions {
-    const val compose = "0.1.0-dev13"
+    const val compose = "0.1.0-dev14"
     const val kotlin = "1.3.71"
     const val targetSdk = 29
     const val buildVersion = "29.0.3"

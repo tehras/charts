@@ -84,11 +84,11 @@ fun DrawScope.drawYAxis(
 
     val yAxisLine = yAxis.axisLine
     // Draw line.
-    val dx = yAxisArea.right - (yAxisLine.thickness.toPx().value / 2)
+    val x = yAxisArea.right - (yAxisLine.thickness.toPx() / 2)
 
     canvas.drawLine(
-        p1 = Offset(dy = yAxisArea.top, dx = dx),
-        p2 = Offset(dy = yAxisArea.bottom, dx = dx + xAxisLineThickness),
+        p1 = Offset(y = yAxisArea.top, x = x),
+        p2 = Offset(y = yAxisArea.bottom, x = x + xAxisLineThickness),
         paint = yAxisLine.paint(this)
     )
 }
@@ -105,11 +105,11 @@ fun DrawScope.drawXAxis(
 
     val axisLine = xAxis.axisLine
     // Draw line.
-    val dy = xAxisArea.top + (axisLine.thickness.toPx().value / 2)
+    val dy = xAxisArea.top + (axisLine.thickness.toPx() / 2)
 
     canvas.drawLine(
-        p1 = Offset(dy = dy, dx = xAxisArea.left - yAxisLineThickness),
-        p2 = Offset(dy = dy, dx = xAxisArea.right),
+        p1 = Offset(y = dy, x = xAxisArea.left - yAxisLineThickness),
+        p2 = Offset(y = dy, x = xAxisArea.right),
         paint = axisLine.paint(this)
     )
 }
@@ -136,8 +136,8 @@ fun DrawScope.drawBarLabels(
         val labelFormat = barChartData.valueLabelFormat
         val yCenter = when (labelFormat.drawLocation) {
             Inside -> (barArea.top + barArea.bottom) / 2
-            Outside -> (barArea.top) - (labelFormat.textSize.toPx().value) / 2
-            XAxis -> barArea.bottom + (labelFormat.textSize.toPx().value) * (3f / 2f)
+            Outside -> (barArea.top) - (labelFormat.textSize.toPx()) / 2
+            XAxis -> barArea.bottom + (labelFormat.textSize.toPx()) * (3f / 2f)
         }
 
         canvas.nativeCanvas.drawText(bar.label, xCenter, yCenter, labelFormat.paint(this))
@@ -150,7 +150,7 @@ fun DrawScope.drawValueLabels(
     barChartData: BarChartData
 ) {
     val yAxis = barChartData.yAxis
-    val textHeight = yAxis.textSize.toPx().value
+    val textHeight = yAxis.textSize.toPx()
     val topOffset = barChartData.topOffset(this)
     val top = yAxisArea.top + topOffset
     val maxHeight = yAxisArea.height - topOffset

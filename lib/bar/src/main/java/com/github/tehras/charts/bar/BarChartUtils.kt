@@ -83,7 +83,7 @@ internal object BarChartUtils {
 
     fun BarChartData.topOffset(density: Density) =
         when (valueLabelFormat.drawLocation) {
-            Outside -> with(density) { 3f / 2f * valueLabelFormat.textSize.toPx().value }
+            Outside -> with(density) { 3f / 2f * valueLabelFormat.textSize.toPx() }
             Inside,
             XAxis -> 0f
         }

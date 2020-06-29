@@ -34,7 +34,7 @@ class SimpleXAxisDrawer(
 
     override fun requiredHeight(drawScope: DrawScope): Float {
         return with(drawScope) {
-            (3f / 2f) * (labelTextSize.toPx() + axisLineThickness.toPx()).value
+            (3f / 2f) * (labelTextSize.toPx() + axisLineThickness.toPx())
         }
     }
 
@@ -44,17 +44,17 @@ class SimpleXAxisDrawer(
         drawableArea: Rect
     ) {
         with(drawScope) {
-            val lineThickness = axisLineThickness.toPx().value
-            val dy = drawableArea.top + (lineThickness / 2f)
+            val lineThickness = axisLineThickness.toPx()
+            val y = drawableArea.top + (lineThickness / 2f)
 
             canvas.drawLine(
                 p1 = Offset(
-                    dx = drawableArea.left,
-                    dy = dy
+                    x = drawableArea.left,
+                    y = y
                 ),
                 p2 = Offset(
-                    dx = drawableArea.right,
-                    dy = dy
+                    x = drawableArea.right,
+                    y = y
                 ),
                 paint = axisLinePaint.apply {
                     strokeWidth = lineThickness
@@ -71,17 +71,17 @@ class SimpleXAxisDrawer(
     ) {
         with(drawScope) {
             val labelPaint = textPaint.apply {
-                textSize = labelTextSize.toPx().value
+                textSize = labelTextSize.toPx()
                 textAlign = android.graphics.Paint.Align.CENTER
             }
 
             val labelIncrements = drawableArea.width / (labels.size - 1)
             labels.forEachIndexed { index, label ->
                 if (index.rem(labelRatio) == 0) {
-                    val dx = drawableArea.left + (labelIncrements * (index))
-                    val dy = drawableArea.bottom
+                    val x = drawableArea.left + (labelIncrements * (index))
+                    val y = drawableArea.bottom
 
-                    canvas.nativeCanvas.drawText(label, dx, dy, labelPaint)
+                    canvas.nativeCanvas.drawText(label, x, y, labelPaint)
                 }
             }
         }

@@ -28,7 +28,7 @@ data class FilledPointDrawer(
         offset: Offset
     ) {
         with(drawScope as Density) {
-            canvas.drawCircle(offset, size.toPx().value / 2f, paint)
+            canvas.drawCircle(offset, size.toPx() / 2f, paint)
         }
     }
 }

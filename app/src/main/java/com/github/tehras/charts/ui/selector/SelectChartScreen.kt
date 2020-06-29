@@ -17,15 +17,15 @@ import com.github.tehras.charts.ui.ChartScreenStatus
 @Composable
 fun SelectChartScreen() {
     Scaffold(
-        topAppBar = { TopAppBar(title = { Text(text = "Select Chart") }) },
-        bodyContent = { modifier -> SelectChartScreenContent(modifier) }
+        topBar = { TopAppBar(title = { Text(text = "Select Chart") }) },
+        bodyContent = { SelectChartScreenContent() }
     )
 }
 
 @Composable
-private fun SelectChartScreenContent(modifier: Modifier) {
+private fun SelectChartScreenContent() {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalGravity = Alignment.CenterHorizontally
     ) {

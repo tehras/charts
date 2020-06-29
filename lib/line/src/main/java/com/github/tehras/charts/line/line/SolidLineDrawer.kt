@@ -21,7 +21,7 @@ data class SolidLineDrawer(
         linePath: Path
     ) {
         val lineThickness = with(drawScope) {
-            thickness.toPx().value
+            thickness.toPx()
         }
 
         canvas.drawPath(

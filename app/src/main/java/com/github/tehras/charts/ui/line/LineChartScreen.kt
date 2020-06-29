@@ -22,7 +22,7 @@ import com.github.tehras.charts.ui.ChartScreenStatus
 @Composable
 fun LineChartScreen() {
     Scaffold(
-        topAppBar = {
+        topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
@@ -32,16 +32,16 @@ fun LineChartScreen() {
                 title = { Text(text = "Line Chart") }
             )
         },
-        bodyContent = { modifier -> LineChartScreenContent(modifier) }
+        bodyContent = { LineChartScreenContent() }
     )
 }
 
 @Composable
-fun LineChartScreenContent(modifier: Modifier) {
+fun LineChartScreenContent() {
     val lineChartDataModel = LineChartDataModel()
 
     Column(
-        modifier = modifier.padding(
+        modifier = Modifier.padding(
             horizontal = Margins.horizontal,
             vertical = Margins.vertical
         )

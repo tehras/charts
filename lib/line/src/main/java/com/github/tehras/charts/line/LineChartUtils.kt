@@ -58,7 +58,7 @@ object LineChartUtils {
         size: Size
     ): Rect {
         // Either 50dp or 10% of the chart width.
-        val right = minOf(50.dp.toPx().value, size.width * 10f / 100f)
+        val right = minOf(50.dp.toPx(), size.width * 10f / 100f)
 
         return Rect(
             left = 0f,
@@ -78,8 +78,8 @@ object LineChartUtils {
         val y = ((point.value - lineChartData.minYValue) / lineChartData.yRange)
 
         return Offset(
-            dx = (x * drawableArea.width) + drawableArea.left,
-            dy = drawableArea.height - (y * drawableArea.height)
+            x = (x * drawableArea.width) + drawableArea.left,
+            y = drawableArea.height - (y * drawableArea.height)
         )
     }
 
@@ -124,19 +124,19 @@ object LineChartUtils {
                 )
 
                 if (index == 0) {
-                    moveTo(pointLocation.dx, pointLocation.dy)
+                    moveTo(pointLocation.x, pointLocation.y)
                 } else {
                     if (progress <= 1f) {
                         // We have to change the `dy` based on the progress
-                        val prevX = prevPointLocation!!.dx
-                        val prevY = prevPointLocation!!.dy
+                        val prevX = prevPointLocation!!.x
+                        val prevY = prevPointLocation!!.y
 
-                        val dx = (pointLocation.dx - prevX) * progress + prevX
-                        val dy = (pointLocation.dy - prevY) * progress + prevY
+                        val x = (pointLocation.x - prevX) * progress + prevX
+                        val y = (pointLocation.y - prevY) * progress + prevY
 
-                        lineTo(dx, dy)
+                        lineTo(x, y)
                     } else {
-                        lineTo(pointLocation.dx, pointLocation.dy)
+                        lineTo(pointLocation.x, pointLocation.y)
                     }
                 }
 

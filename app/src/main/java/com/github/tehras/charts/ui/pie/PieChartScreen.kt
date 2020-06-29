@@ -25,7 +25,7 @@ import com.github.tehras.charts.ui.ChartScreenStatus
 @Composable
 fun PieChartScreen() {
     Scaffold(
-        topAppBar = {
+        topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
@@ -35,16 +35,16 @@ fun PieChartScreen() {
                 title = { Text(text = "Pie Chart") }
             )
         },
-        bodyContent = { modifier -> PieChartScreenContent(modifier) }
+        bodyContent = { PieChartScreenContent() }
     )
 }
 
 @Composable
-private fun PieChartScreenContent(modifier: Modifier) {
+private fun PieChartScreenContent() {
     val pieChartDataModel = PieChartDataModel()
 
     Column(
-        modifier = modifier.padding(
+        modifier = Modifier.padding(
             horizontal = Margins.horizontal,
             vertical = Margins.vertical
         )
