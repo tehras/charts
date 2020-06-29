@@ -14,10 +14,13 @@ Currently this is using `0.1.0-dev14` library.
 ```kotlin
 @Composable
 fun MyChartParent() {
-     PieChart(pieChartData = PieChartData(
-         slices = listOf(Slice(...), Slice(...),....),
-         sliceThickness = 25f
-     ))
+    PieChart(
+        pieChartData = PieChartData(listOf(Slice(...), Slice(...),....)),
+        // Optional properties.
+        modifier = Modifier.fillMaxSize(),
+        animation = SimpleChartAnimation,
+        sliceDrawer = SimpleSliceDrawer()
+    )
 }
 ```
 
