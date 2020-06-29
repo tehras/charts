@@ -2,12 +2,12 @@
 
 <p>
 This is an exploratory playground library to figure out how to Draw and animate using Android Jetpack Compose library.
-Currently this is using `0.1.0-dev13` library.
+Currently this is using `0.1.0-dev14` library.
 </p>
 
 ## How it looks:
 
-<img src="/assets/pie_chart.gif" width="200"> <img src="/assets/bar_chart.gif" width="200">
+<img src="/assets/pie_chart.gif" width="200"> <img src="/assets/bar_chart.gif" width="200"> <img src="/assets/line_chart.gif" width="200">
 
 ## How to use Pie Chart:
 
@@ -25,13 +25,32 @@ fun MyChartParent() {
 
 ```kotlin
 @Composable
-fun MyPieChartParent() {
+fun MyBarChartParent() {
     BarChartData(
         bars = listOf(Bar(label = "Bar Label", value = 100f, color = Color.Red),),
         // Optional value label configs.
         valueLabelFormat = LabelFormat(),
         yAxis = YAxis(),
         xAxis = XAxis()
+    )
+}
+```
+
+## How to use Line Chart:
+
+```kotlin
+@Composable
+fun MyLineChartParent() {
+    LineChart(
+        lineChartData: LineChartData,
+        // Optional properties.
+        modifier = Modifier.fillMaxSize(),
+        animation = SimpleChartAnimation,
+        pointDrawer = FilledCircularPointDrawer(),
+        lineDrawer = SolidLineDrawer(),
+        xAxisDrawer = SimpleXAxisDrawer(),
+        yAxisDrawer = SimpleYAxisDrawer(),
+        horizontalOffset = 5f
     )
 }
 ```
