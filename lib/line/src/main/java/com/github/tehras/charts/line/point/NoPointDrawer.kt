@@ -8,7 +8,7 @@ object NoPointDrawer : PointDrawer {
     override fun drawPoint(
         drawScope: DrawScope,
         canvas: Canvas,
-        offset: Offset
+        center: Offset
     ) {
         // Leave empty on purpose, we do not want to draw anything.
     }

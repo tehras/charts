@@ -10,25 +10,31 @@ import androidx.ui.unit.Density
 import androidx.ui.unit.Dp
 import androidx.ui.unit.dp
 
-
-data class FilledPointDrawer(
-    val size: Dp = 8.dp,
+data class HollowCircularPointDrawer(
+    val diameter: Dp = 8.dp,
+    val lineThickness: Dp = 2.dp,
     val color: Color = Color.Blue
 ) : PointDrawer {
 
     private val paint = Paint().apply {
-        color = this@FilledPointDrawer.color
-        style = PaintingStyle.fill
+        color = this@HollowCircularPointDrawer.color
+        style = PaintingStyle.stroke
         isAntiAlias = true
     }
 
     override fun drawPoint(
         drawScope: DrawScope,
         canvas: Canvas,
-        offset: Offset
+        center: Offset
     ) {
         with(drawScope as Density) {
-            canvas.drawCircle(offset, size.toPx() / 2f, paint)
+            canvas.drawCircle(
+                center = center,
+                radius = diameter.toPx() / 2f,
+                paint = paint.apply {
+                    strokeWidth = lineThickness.toPx()
+                }
+            )
         }
     }
 }

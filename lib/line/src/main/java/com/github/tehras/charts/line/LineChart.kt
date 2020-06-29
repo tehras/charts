@@ -17,7 +17,7 @@ import com.github.tehras.charts.line.LineChartUtils.calculateYAxisDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.withProgress
 import com.github.tehras.charts.line.line.LineDrawer
 import com.github.tehras.charts.line.line.SolidLineDrawer
-import com.github.tehras.charts.line.point.FilledPointDrawer
+import com.github.tehras.charts.line.point.FilledCircularPointDrawer
 import com.github.tehras.charts.line.point.PointDrawer
 import com.github.tehras.charts.line.xaxis.SimpleXAxisDrawer
 import com.github.tehras.charts.line.xaxis.XAxisDrawer
@@ -30,15 +30,15 @@ fun LineChart(
     lineChartData: LineChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
     animation: AnimationBuilder<Float> = SimpleChartAnimation,
-    pointDrawer: PointDrawer = FilledPointDrawer(),
+    pointDrawer: PointDrawer = FilledCircularPointDrawer(),
     lineDrawer: LineDrawer = SolidLineDrawer(),
     xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),
     yAxisDrawer: YAxisDrawer = SimpleYAxisDrawer(),
     horizontalOffset: Float = 5f
 ) {
-    check(horizontalOffset in 0f..50f) {
+    check(horizontalOffset in 0f..25f) {
         "Horizontal offset is the % offset from sides, " +
-                "and should be between 10%-100%"
+                "and should be between 0%-25%"
     }
 
     val transitionProgress = animatedFloat(initVal = 0f)
@@ -89,7 +89,7 @@ fun LineChart(
                     pointDrawer.drawPoint(
                         drawScope = this,
                         canvas = canvas,
-                        offset = calculatePointLocation(
+                        center = calculatePointLocation(
                             drawableArea = chartDrawableArea,
                             lineChartData = lineChartData,
                             point = point,
