@@ -15,12 +15,13 @@ import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.piechart.PieChartUtils.calculateAngle
 import com.github.tehras.charts.piechart.PieChartUtils.calculateDrawableArea
 import com.github.tehras.charts.piechart.PieChartUtils.calculateSectorThickness
+import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 
 @Composable
 fun PieChart(
     pieChartData: PieChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
-    animation: AnimationBuilder<Float> = DefaultPieChartAnimation
+    animation: AnimationBuilder<Float> = SimpleChartAnimation
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)
 

@@ -30,7 +30,7 @@ import com.github.tehras.charts.ui.ChartScreenStatus
 @Composable
 fun BarChartScreen() {
     Scaffold(
-        topAppBar = {
+        topBar = {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
@@ -40,16 +40,16 @@ fun BarChartScreen() {
                 title = { Text(text = "Bar Chart") }
             )
         },
-        bodyContent = { modifier -> BarChartScreenContent(modifier) }
+        bodyContent = { BarChartScreenContent() }
     )
 }
 
 @Composable
-private fun BarChartScreenContent(modifier: Modifier) {
+private fun BarChartScreenContent() {
     val barChartDataModel = BarChartDataModel()
 
     Column(
-        modifier = modifier.padding(
+        modifier = Modifier.padding(
             horizontal = Margins.horizontal,
             vertical = Margins.vertical
         )

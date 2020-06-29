@@ -6,6 +6,7 @@ import androidx.ui.material.MaterialTheme
 import androidx.ui.material.Surface
 import com.github.tehras.charts.theme.ChartsTheme
 import com.github.tehras.charts.ui.bar.BarChartScreen
+import com.github.tehras.charts.ui.line.LineChartScreen
 import com.github.tehras.charts.ui.pie.PieChartScreen
 import com.github.tehras.charts.ui.selector.SelectChartScreen
 
@@ -24,7 +25,7 @@ fun AppContent() {
                 ChartScreen.SelectChart -> SelectChartScreen()
                 ChartScreen.Pie -> PieChartScreen()
                 ChartScreen.Bar -> BarChartScreen()
-                ChartScreen.Line -> TODO()
+                ChartScreen.Line -> LineChartScreen()
             }
         }
     }

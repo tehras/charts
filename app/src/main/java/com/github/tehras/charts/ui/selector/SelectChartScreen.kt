@@ -11,44 +11,39 @@ import androidx.ui.material.TopAppBar
 import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.theme.Margins
 import com.github.tehras.charts.ui.ChartScreen
+import com.github.tehras.charts.ui.ChartScreen.*
 import com.github.tehras.charts.ui.ChartScreenStatus
 
 @Composable
 fun SelectChartScreen() {
     Scaffold(
-        topAppBar = { TopAppBar(title = { Text(text = "Select Chart") }) },
-        bodyContent = { modifier -> SelectChartScreenContent(modifier) }
+        topBar = { TopAppBar(title = { Text(text = "Select Chart") }) },
+        bodyContent = { SelectChartScreenContent() }
     )
 }
 
 @Composable
-private fun SelectChartScreenContent(modifier: Modifier) {
+private fun SelectChartScreenContent() {
     Column(
-        modifier = modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalGravity = Alignment.CenterHorizontally
     ) {
-        PieChartRow()
-        BarChartRow()
+        ChartRow(text = "Pie Chart", navigateTo = Pie)
+        ChartRow(text = "Bar Chart", navigateTo = Bar)
+        ChartRow(text = "Line Chart", navigateTo = Line)
     }
 }
 
 @Composable
-private fun PieChartRow() {
+private fun ChartRow(
+    text: String,
+    navigateTo: ChartScreen
+) {
     Row(modifier = Modifier.padding(horizontal = Margins.horizontal, vertical = Margins.vertical)) {
         Button(
-            onClick = { ChartScreenStatus.navigateTo(ChartScreen.Pie) },
-            text = { Text(text = "Pie Chart") }
-        )
-    }
-}
-
-@Composable
-private fun BarChartRow() {
-    Row(modifier = Modifier.padding(horizontal = Margins.horizontal, vertical = Margins.vertical)) {
-        Button(
-            onClick = { ChartScreenStatus.navigateTo(ChartScreen.Bar) },
-            text = { Text(text = "Bar Chart") }
+            onClick = { ChartScreenStatus.navigateTo(navigateTo) },
+            text = { Text(text = text) }
         )
     }
 }
