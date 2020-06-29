@@ -1,7 +1,6 @@
 package com.github.tehras.charts.piechart
 
 import androidx.animation.AnimationBuilder
-import androidx.animation.TweenBuilder
 import androidx.compose.Composable
 import androidx.compose.onPreCommit
 import androidx.ui.animation.animatedFloat
@@ -10,18 +9,18 @@ import androidx.ui.foundation.Canvas
 import androidx.ui.graphics.Color
 import androidx.ui.graphics.drawscope.drawCanvas
 import androidx.ui.layout.fillMaxSize
-import androidx.ui.res.integerResource
 import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.piechart.PieChartUtils.calculateAngle
-import com.github.tehras.charts.piechart.PieChartUtils.calculateDrawableArea
-import com.github.tehras.charts.piechart.PieChartUtils.calculateSectorThickness
 import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
+import com.github.tehras.charts.piechart.renderer.SimpleSliceDrawer
+import com.github.tehras.charts.piechart.renderer.SliceDrawer
 
 @Composable
 fun PieChart(
     pieChartData: PieChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
-    animation: AnimationBuilder<Float> = SimpleChartAnimation
+    animation: AnimationBuilder<Float> = SimpleChartAnimation,
+    sliceDrawer: SliceDrawer = SimpleSliceDrawer()
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)
 
@@ -34,7 +33,8 @@ fun PieChart(
     DrawChart(
         pieChartData = pieChartData,
         modifier = modifier,
-        progress = transitionProgress.value
+        progress = transitionProgress.value,
+        sliceDrawer = sliceDrawer
     )
 }
 
@@ -42,35 +42,29 @@ fun PieChart(
 private fun DrawChart(
     pieChartData: PieChartData,
     modifier: Modifier,
-    progress: Float
+    progress: Float,
+    sliceDrawer: SliceDrawer
 ) {
     val slices = pieChartData.slices
 
     Canvas(modifier = modifier) {
         drawCanvas { canvas, size ->
-            val rect = calculateDrawableArea(size, pieChartData)
             var startArc = 0f
 
             slices.forEach { slice ->
-                val arc =
-                    calculateAngle(
-                        sliceLength = slice.value,
-                        totalLength = pieChartData.totalSize,
-                        progress = progress
-                    )
+                val arc = calculateAngle(
+                    sliceLength = slice.value,
+                    totalLength = pieChartData.totalSize,
+                    progress = progress
+                )
 
-                canvas.drawArc(
-                    rect = rect,
-                    paint = pieChartData.sectionPaint.apply {
-                        color = slice.color
-                        strokeWidth = calculateSectorThickness(
-                            size = size,
-                            pieChartData = pieChartData
-                        )
-                    },
+                sliceDrawer.drawSlice(
+                    drawScope = this,
+                    canvas = canvas,
+                    area = size,
                     startAngle = startArc,
                     sweepAngle = arc,
-                    useCenter = false
+                    slice = slice
                 )
 
                 startArc += arc
@@ -78,12 +72,6 @@ private fun DrawChart(
         }
     }
 }
-
-@Composable
-private val DefaultPieChartAnimation: AnimationBuilder<Float>
-    get() = TweenBuilder<Float>().apply {
-        duration = +integerResource(id = android.R.integer.config_mediumAnimTime)
-    }
 
 @Preview
 @Composable

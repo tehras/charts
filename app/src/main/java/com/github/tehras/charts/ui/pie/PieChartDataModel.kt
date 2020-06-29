@@ -23,6 +23,7 @@ class PieChartDataModel {
         Color(0XFF607D8B)
     )
 
+    var sliceThickness by mutableStateOf(25f)
     var pieChartData by mutableStateOf(
         PieChartData(
             slices = listOf(
@@ -38,16 +39,10 @@ class PieChartDataModel {
                     randomLength(),
                     randomColor()
                 )
-            ),
-            sliceThickness = 25f
+            )
         )
     )
-        private set
-    var thickness
-        get() = pieChartData.sliceThickness
-        set(value) {
-            pieChartData = pieChartData.copy(sliceThickness = value)
-        }
+
     val slices
         get() = pieChartData.slices
 

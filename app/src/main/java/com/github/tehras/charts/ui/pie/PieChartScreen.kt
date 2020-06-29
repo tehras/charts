@@ -18,7 +18,7 @@ import androidx.ui.tooling.preview.Preview
 import androidx.ui.unit.dp
 import androidx.ui.unit.sp
 import com.github.tehras.charts.piechart.PieChart
-import com.github.tehras.charts.piechart.PieChartData
+import com.github.tehras.charts.piechart.renderer.SimpleSliceDrawer
 import com.github.tehras.charts.theme.Margins
 import com.github.tehras.charts.ui.ChartScreenStatus
 
@@ -49,18 +49,23 @@ private fun PieChartScreenContent() {
             vertical = Margins.vertical
         )
     ) {
-        PieChartRow(pieChartDataModel.pieChartData)
-        SliceThicknessRow(pieChartDataModel.thickness) {
-            pieChartDataModel.thickness = it
+        PieChartRow(pieChartDataModel)
+        SliceThicknessRow(pieChartDataModel.sliceThickness) {
+            pieChartDataModel.sliceThickness = it
         }
         AddOrRemoveSliceRow(pieChartDataModel)
     }
 }
 
 @Composable
-private fun PieChartRow(pieChartData: PieChartData) {
+private fun PieChartRow(pieChartDataModel: PieChartDataModel) {
     Row(modifier = Modifier.fillMaxWidth().height(150.dp).padding(vertical = Margins.vertical)) {
-        PieChart(pieChartData = pieChartData)
+        PieChart(
+            pieChartData = pieChartDataModel.pieChartData,
+            sliceDrawer = SimpleSliceDrawer(
+                sliceThickness = pieChartDataModel.sliceThickness
+            )
+        )
     }
 }
 

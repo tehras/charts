@@ -1,31 +1,6 @@
 package com.github.tehras.charts.piechart
 
-import androidx.ui.geometry.Rect
-import androidx.ui.geometry.Size
-
 internal object PieChartUtils {
-    fun calculateDrawableArea(
-        size: Size,
-        pieChartData: PieChartData
-    ): Rect {
-        val sliceThicknessOffset =
-            calculateSectorThickness(size = size, pieChartData = pieChartData) / 2f
-        val offsetHorizontally = (size.width - size.height) / 2f
-
-        return Rect(
-            left = sliceThicknessOffset + offsetHorizontally,
-            top = sliceThicknessOffset,
-            right = size.width - sliceThicknessOffset - offsetHorizontally,
-            bottom = size.height - sliceThicknessOffset
-        )
-    }
-
-    fun calculateSectorThickness(size: Size, pieChartData: PieChartData): Float {
-        val minSize = minOf(size.width, size.height)
-
-        return minSize * (pieChartData.sliceThickness / 200f)
-    }
-
     fun calculateAngle(
         sliceLength: Float,
         totalLength: Float,
