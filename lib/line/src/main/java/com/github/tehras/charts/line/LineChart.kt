@@ -1,6 +1,6 @@
 package com.github.tehras.charts.line
 
-import androidx.animation.AnimationBuilder
+import androidx.animation.AnimationSpec
 import androidx.compose.Composable
 import androidx.compose.onCommit
 import androidx.ui.animation.animatedFloat
@@ -29,7 +29,7 @@ import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 fun LineChart(
     lineChartData: LineChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
-    animation: AnimationBuilder<Float> = SimpleChartAnimation,
+    animation: AnimationSpec<Float> = SimpleChartAnimation,
     pointDrawer: PointDrawer = FilledCircularPointDrawer(),
     lineDrawer: LineDrawer = SolidLineDrawer(),
     xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),

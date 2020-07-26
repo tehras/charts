@@ -1,6 +1,6 @@
 package com.github.tehras.charts.piechart
 
-import androidx.animation.AnimationBuilder
+import androidx.animation.AnimationSpec
 import androidx.compose.Composable
 import androidx.compose.onPreCommit
 import androidx.ui.animation.animatedFloat
@@ -19,7 +19,7 @@ import com.github.tehras.charts.piechart.renderer.SliceDrawer
 fun PieChart(
     pieChartData: PieChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
-    animation: AnimationBuilder<Float> = SimpleChartAnimation,
+    animation: AnimationSpec<Float> = SimpleChartAnimation,
     sliceDrawer: SliceDrawer = SimpleSliceDrawer()
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)

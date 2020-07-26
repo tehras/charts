@@ -1,6 +1,6 @@
 package com.github.tehras.charts.bar
 
-import androidx.animation.AnimationBuilder
+import androidx.animation.AnimationSpec
 import androidx.compose.Composable
 import androidx.compose.onPreCommit
 import androidx.ui.animation.animatedFloat
@@ -24,7 +24,7 @@ import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 fun BarChart(
     barChartData: BarChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
-    animation: AnimationBuilder<Float> = SimpleChartAnimation
+    animation: AnimationSpec<Float> = SimpleChartAnimation
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)
     val resetAnimation = {
