@@ -15,14 +15,14 @@ import com.github.tehras.charts.line.LineChartUtils.calculateXAxisDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.calculateXAxisLabelsDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.calculateYAxisDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.withProgress
-import com.github.tehras.charts.line.line.LineDrawer
-import com.github.tehras.charts.line.line.SolidLineDrawer
-import com.github.tehras.charts.line.point.FilledCircularPointDrawer
-import com.github.tehras.charts.line.point.PointDrawer
-import com.github.tehras.charts.line.xaxis.SimpleXAxisDrawer
-import com.github.tehras.charts.line.xaxis.XAxisDrawer
-import com.github.tehras.charts.line.yaxis.SimpleYAxisDrawer
-import com.github.tehras.charts.line.yaxis.YAxisDrawer
+import com.github.tehras.charts.line.renderer.line.LineDrawer
+import com.github.tehras.charts.line.renderer.line.SolidLineDrawer
+import com.github.tehras.charts.line.renderer.point.FilledCircularPointDrawer
+import com.github.tehras.charts.line.renderer.point.PointDrawer
+import com.github.tehras.charts.line.renderer.xaxis.SimpleXAxisDrawer
+import com.github.tehras.charts.line.renderer.xaxis.XAxisDrawer
+import com.github.tehras.charts.line.renderer.yaxis.SimpleYAxisDrawer
+import com.github.tehras.charts.line.renderer.yaxis.YAxisDrawer
 import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 
 @Composable

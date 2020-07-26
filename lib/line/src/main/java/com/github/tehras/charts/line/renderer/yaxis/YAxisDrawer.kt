@@ -1,4 +1,4 @@
-package com.github.tehras.charts.line.yaxis
+package com.github.tehras.charts.line.renderer.yaxis
 
 import androidx.ui.geometry.Rect
 import androidx.ui.graphics.Canvas
