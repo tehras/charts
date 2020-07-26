@@ -29,13 +29,16 @@ fun MyChartParent() {
 ```kotlin
 @Composable
 fun MyBarChartParent() {
-    BarChartData(
-        bars = listOf(Bar(label = "Bar Label", value = 100f, color = Color.Red),),
-        // Optional value label configs.
-        valueLabelFormat = LabelFormat(),
-        yAxis = YAxis(),
-        xAxis = XAxis()
-    )
+    fun BarChart(
+        barChartData = BarChartData(bars = listOf(Bar(label = "Bar Label", value = 100f, color = Color.Red)),
+        // Optional properties.
+        modifier = Modifier.fillMaxSize(),
+        animation = SimpleChartAnimation,
+        barDrawer = SimpleBarDrawer(),
+        xAxisDrawer = SimpleXAxisDrawer(),
+        yAxisDrawer = SimpleYAxisDrawer(),
+        labelDrawer = SimpleValueDrawer()
+    ) 
 }
 ```
 
