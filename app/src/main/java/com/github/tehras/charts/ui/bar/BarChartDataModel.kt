@@ -7,8 +7,9 @@ import androidx.ui.graphics.Color
 import androidx.ui.graphics.Color.Companion.White
 import com.github.tehras.charts.bar.BarChartData
 import com.github.tehras.charts.bar.BarChartData.Bar
-import com.github.tehras.charts.bar.BarChartData.LabelFormat.DrawLocation
-import com.github.tehras.charts.bar.BarChartData.LabelFormat.DrawLocation.*
+import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer
+import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer.DrawLocation
+import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer.DrawLocation.*
 
 class BarChartDataModel {
     private var colors = mutableListOf(
@@ -26,6 +27,8 @@ class BarChartDataModel {
         Color(0XFF9E9E9E),
         Color(0XFF607D8B)
     )
+    var labelDrawer: SimpleValueDrawer by mutableStateOf(SimpleValueDrawer(drawLocation = Inside))
+        private set
     var barChartData by mutableStateOf(
         BarChartData(
             bars = listOf(
@@ -50,20 +53,18 @@ class BarChartDataModel {
 
     val bars: List<Bar>
         get() = barChartData.bars
-    var valueLocation: DrawLocation
-        get() = barChartData.valueLabelFormat.drawLocation
+    var labelLocation: DrawLocation = Inside
         set(value) {
             val color = when (value) {
                 Inside -> White
                 Outside, XAxis -> Color.Black
             }
 
-            barChartData = barChartData.copy(
-                valueLabelFormat = barChartData.valueLabelFormat.copy(
-                    textColor = color,
-                    drawLocation = value
-                )
+            labelDrawer = SimpleValueDrawer(
+                drawLocation = value,
+                labelTextColor = color
             )
+            field = value
         }
 
     fun addBar() {

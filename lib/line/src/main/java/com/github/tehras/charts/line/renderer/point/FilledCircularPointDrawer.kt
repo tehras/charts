@@ -1,4 +1,4 @@
-package com.github.tehras.charts.line.point
+package com.github.tehras.charts.line.renderer.point
 
 import androidx.ui.geometry.Offset
 import androidx.ui.graphics.Canvas
