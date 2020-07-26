@@ -1,6 +1,7 @@
 package com.github.tehras.charts.ui.bar
 
 import androidx.compose.Composable
+import androidx.compose.onCommit
 import androidx.ui.core.Alignment.Companion.CenterHorizontally
 import androidx.ui.core.Alignment.Companion.CenterVertically
 import androidx.ui.core.Modifier
@@ -22,8 +23,7 @@ import androidx.ui.text.font.FontWeight
 import androidx.ui.unit.dp
 import androidx.ui.unit.sp
 import com.github.tehras.charts.bar.BarChart
-import com.github.tehras.charts.bar.BarChartData
-import com.github.tehras.charts.bar.BarChartData.LabelFormat.DrawLocation
+import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer.DrawLocation
 import com.github.tehras.charts.theme.Margins
 import com.github.tehras.charts.ui.ChartScreenStatus
 
@@ -54,9 +54,9 @@ private fun BarChartScreenContent() {
             vertical = Margins.vertical
         )
     ) {
-        BarChartRow(barChartDataModel.barChartData)
+        BarChartRow(barChartDataModel)
         DrawValueLocation(barChartDataModel) {
-            barChartDataModel.valueLocation = it
+            barChartDataModel.labelLocation = it
         }
         AddOrRemoveBar(barChartDataModel)
     }
@@ -67,7 +67,14 @@ fun DrawValueLocation(
     barChartDataModel: BarChartDataModel,
     newLocation: (DrawLocation) -> Unit
 ) {
-    val selectedAlignment = barChartDataModel.valueLocation
+    var selectedAlignment = barChartDataModel.labelLocation
+
+    // There might be a better way to do this, but `DrawValueLocation` wasn't updating because
+    // nothing here was a state. So wrapping `barChartDataModel` with `onCommit` will get a
+    // callback when `labelDrawer` is updated and force the view below to re-render.
+    onCommit(barChartDataModel.labelDrawer) {
+        selectedAlignment = barChartDataModel.labelLocation
+    }
 
     Row(
         modifier = Modifier.fillMaxWidth()
@@ -134,12 +141,15 @@ fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
 }
 
 @Composable
-private fun BarChartRow(barChartData: BarChartData) {
+private fun BarChartRow(barChartDataModel: BarChartDataModel) {
     Row(
         modifier = Modifier.fillMaxWidth()
             .height(250.dp)
             .padding(vertical = Margins.verticalLarge)
     ) {
-        BarChart(barChartData = barChartData)
+        BarChart(
+            barChartData = barChartDataModel.barChartData,
+            labelDrawer = barChartDataModel.labelDrawer
+        )
     }
 }

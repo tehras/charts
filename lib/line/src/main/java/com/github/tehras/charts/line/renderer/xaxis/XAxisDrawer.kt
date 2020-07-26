@@ -1,10 +1,12 @@
-package com.github.tehras.charts.line.yaxis
+package com.github.tehras.charts.line.renderer.xaxis
 
 import androidx.ui.geometry.Rect
 import androidx.ui.graphics.Canvas
 import androidx.ui.graphics.drawscope.DrawScope
 
-interface YAxisDrawer {
+interface XAxisDrawer {
+    fun requiredHeight(drawScope: DrawScope): Float
+
     fun drawAxisLine(
         drawScope: DrawScope,
         canvas: Canvas,
@@ -15,8 +17,6 @@ interface YAxisDrawer {
         drawScope: DrawScope,
         canvas: Canvas,
         drawableArea: Rect,
-        minValue: Float,
-        maxValue: Float,
-        padBy: Float
+        labels: List<String>
     )
 }

@@ -1,4 +1,4 @@
-package com.github.tehras.charts.line.line
+package com.github.tehras.charts.line.renderer.line
 
 import androidx.ui.graphics.*
 import androidx.ui.graphics.drawscope.DrawScope
