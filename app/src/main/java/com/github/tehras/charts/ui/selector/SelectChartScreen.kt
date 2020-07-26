@@ -5,8 +5,8 @@ import androidx.ui.core.Alignment
 import androidx.ui.core.Modifier
 import androidx.ui.foundation.Text
 import androidx.ui.layout.*
-import androidx.ui.material.Button
 import androidx.ui.material.Scaffold
+import androidx.ui.material.TextButton
 import androidx.ui.material.TopAppBar
 import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.theme.Margins
@@ -41,10 +41,11 @@ private fun ChartRow(
     navigateTo: ChartScreen
 ) {
     Row(modifier = Modifier.padding(horizontal = Margins.horizontal, vertical = Margins.vertical)) {
-        Button(
-            onClick = { ChartScreenStatus.navigateTo(navigateTo) },
-            text = { Text(text = text) }
-        )
+        TextButton(
+            onClick = { ChartScreenStatus.navigateTo(navigateTo) }
+        ) {
+            Text(text = text)
+        }
     }
 }
 

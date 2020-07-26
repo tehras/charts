@@ -13,8 +13,8 @@ data class LineChartData(
 
     private val yMinMax: Pair<Float, Float>
         get() {
-            val min = points.minBy { it.value }?.value ?: 0f
-            val max = points.maxBy { it.value }?.value ?: 0f
+            val min = points.minByOrNull { it.value }?.value ?: 0f
+            val max = points.maxByOrNull { it.value }?.value ?: 0f
 
             return min to max
         }
