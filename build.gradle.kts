@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.0-alpha05")
+        classpath("com.android.tools.build:gradle:4.2.0-alpha11")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
     }
 
@@ -28,7 +28,7 @@ subprojects {
             allWarningsAsErrors = true
 
             freeCompilerArgs =
-                freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
+                    freeCompilerArgs + listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check")
             jvmTarget = "1.8"
         }
     }
