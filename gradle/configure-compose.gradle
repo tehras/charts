@@ -2,7 +2,7 @@ android {
     buildFeatures { compose true }
 
     composeOptions {
-        kotlinCompilerVersion Versions.composeVersion
+        kotlinCompilerVersion Versions.composeCompilerVersion
         kotlinCompilerExtensionVersion Versions.compose
     }
 }

@@ -1,10 +1,10 @@
 package com.github.tehras.charts.ui.bar
 
-import androidx.compose.getValue
-import androidx.compose.mutableStateOf
-import androidx.compose.setValue
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.Color.Companion.White
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.White
 import com.github.tehras.charts.bar.BarChartData
 import com.github.tehras.charts.bar.BarChartData.Bar
 import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer

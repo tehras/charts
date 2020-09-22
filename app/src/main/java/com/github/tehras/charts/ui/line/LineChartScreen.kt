@@ -1,21 +1,21 @@
 package com.github.tehras.charts.ui.line
 
-import androidx.compose.Composable
-import androidx.ui.core.Alignment.Companion.CenterHorizontally
-import androidx.ui.core.Alignment.Companion.CenterVertically
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Border
-import androidx.ui.foundation.Box
-import androidx.ui.foundation.Icon
-import androidx.ui.foundation.Text
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.SolidColor
-import androidx.ui.layout.*
-import androidx.ui.layout.ColumnScope.gravity
-import androidx.ui.material.*
-import androidx.ui.material.icons.Icons.Filled
-import androidx.ui.material.icons.filled.ArrowBack
-import androidx.ui.unit.dp
+
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Box
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.unit.dp
+import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.line.LineChart
 import com.github.tehras.charts.theme.Margins.horizontal
 import com.github.tehras.charts.theme.Margins.vertical
@@ -30,7 +30,7 @@ fun LineChartScreen() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
-                        Icon(Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack)
                     }
                 },
                 title = { Text(text = "Line Chart") }
@@ -65,7 +65,7 @@ fun HorizontalOffsetSelector(lineChartDataModel: LineChartDataModel) {
             horizontal = horizontal,
             vertical = verticalLarge
         ),
-        verticalGravity = CenterVertically
+        verticalAlignment = CenterVertically
     ) {
         Text("Point Drawer")
 
@@ -73,7 +73,7 @@ fun HorizontalOffsetSelector(lineChartDataModel: LineChartDataModel) {
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = horizontal, vertical = vertical)
-                .gravity(CenterHorizontally)
+                .align(CenterVertically)
         ) {
             PointDrawerType.values().forEach { type ->
                 val color = if (selectedType == type) {
@@ -83,7 +83,7 @@ fun HorizontalOffsetSelector(lineChartDataModel: LineChartDataModel) {
                 }
 
                 TextButton(
-                    border = Border(2.dp, SolidColor(color)),
+                    border = BorderStroke(2.dp, SolidColor(color)),
                     onClick = { lineChartDataModel.pointDrawerType = type }
                 ) {
                     Text(type.name)
@@ -97,14 +97,14 @@ fun HorizontalOffsetSelector(lineChartDataModel: LineChartDataModel) {
 fun OffsetProgress(lineChartDataModel: LineChartDataModel) {
     Row(
         modifier = Modifier.padding(horizontal = horizontal),
-        verticalGravity = CenterVertically
+        verticalAlignment = CenterVertically
     ) {
         Text("Offset")
 
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
-                .gravity(CenterHorizontally)
+                .align(CenterVertically)
         ) {
             Slider(
                 value = lineChartDataModel.horizontalOffset,
@@ -125,3 +125,8 @@ fun LineChartRow(lineChartDataModel: LineChartDataModel) {
         )
     }
 }
+
+
+@Preview
+@Composable
+fun LineChartPreview() = LineChartScreen()

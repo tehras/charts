@@ -1,9 +1,9 @@
 package com.github.tehras.charts.bar
 
-import androidx.ui.geometry.Rect
-import androidx.ui.geometry.Size
-import androidx.ui.graphics.drawscope.DrawScope
-import androidx.ui.unit.dp
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.unit.dp
 import com.github.tehras.charts.bar.renderer.label.LabelDrawer
 import com.github.tehras.charts.bar.renderer.xaxis.XAxisDrawer
 

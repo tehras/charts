@@ -1,9 +1,10 @@
 package com.github.tehras.charts.line.renderer.line
 
-import androidx.ui.graphics.*
-import androidx.ui.graphics.drawscope.DrawScope
-import androidx.ui.unit.Dp
-import androidx.ui.unit.dp
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+
 
 data class SolidLineDrawer(
     val thickness: Dp = 3.dp,
@@ -11,7 +12,7 @@ data class SolidLineDrawer(
 ) : LineDrawer {
     private val paint = Paint().apply {
         this.color = this@SolidLineDrawer.color
-        this.style = PaintingStyle.stroke
+        this.style = PaintingStyle.Stroke
         this.isAntiAlias = true
     }
 

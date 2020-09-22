@@ -1,34 +1,34 @@
 package com.github.tehras.charts.piechart
 
-import androidx.animation.AnimationSpec
-import androidx.compose.Composable
-import androidx.compose.onPreCommit
-import androidx.ui.animation.animatedFloat
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Canvas
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.drawscope.drawCanvas
-import androidx.ui.layout.fillMaxSize
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.animation.animatedFloat
+import androidx.compose.animation.core.AnimationSpec
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.onCommit
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.drawCanvas
 import com.github.tehras.charts.piechart.PieChartUtils.calculateAngle
 import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 import com.github.tehras.charts.piechart.renderer.SimpleSliceDrawer
 import com.github.tehras.charts.piechart.renderer.SliceDrawer
 
+
 @Composable
 fun PieChart(
     pieChartData: PieChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
-    animation: AnimationSpec<Float> = SimpleChartAnimation,
+    animation: AnimationSpec<Float> = SimpleChartAnimation(),
     sliceDrawer: SliceDrawer = SimpleSliceDrawer()
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)
 
     // When slices value changes we want to re-animated the chart.
-    onPreCommit(pieChartData.slices) {
+    onCommit(pieChartData.slices, {
         transitionProgress.snapTo(0f)
         transitionProgress.animateTo(1f, anim = animation)
-    }
+    })
 
     DrawChart(
         pieChartData = pieChartData,
@@ -73,7 +73,7 @@ private fun DrawChart(
     }
 }
 
-@Preview
+
 @Composable
 fun PieChartPreview() = PieChartData(
     slices = listOf(

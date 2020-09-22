@@ -17,10 +17,11 @@ dependencies {
     implementation(Compose.materialIconsExt)
     implementation(Compose.foundation)
     implementation(Compose.runtime)
+    // Previews weren't working when using debugImplementation
+    implementation(Compose.tooling)
 
     implementation(project(":lib:pie"))
     implementation(project(":lib:bar"))
     implementation(project(":lib:line"))
 
-    debugImplementation(Compose.tooling)
 }

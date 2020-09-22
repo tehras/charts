@@ -1,9 +1,9 @@
 package com.github.tehras.charts.piechart.animation
 
-import androidx.animation.TweenSpec
-import androidx.compose.Composable
+import androidx.compose.animation.core.TweenSpec
+import androidx.compose.runtime.Composable
 
 @Composable
-val SimpleChartAnimation = TweenSpec<Float>(
+fun SimpleChartAnimation() = TweenSpec<Float>(
     durationMillis = 500
 )

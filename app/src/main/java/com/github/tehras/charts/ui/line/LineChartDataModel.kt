@@ -1,8 +1,8 @@
 package com.github.tehras.charts.ui.line
 
-import androidx.compose.getValue
-import androidx.compose.mutableStateOf
-import androidx.compose.setValue
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import com.github.tehras.charts.line.LineChartData
 import com.github.tehras.charts.line.LineChartData.Point
 import com.github.tehras.charts.line.renderer.point.FilledCircularPointDrawer

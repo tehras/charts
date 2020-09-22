@@ -1,14 +1,14 @@
 package com.github.tehras.charts.theme
 
-import androidx.compose.Composable
-import androidx.ui.foundation.isSystemInDarkTheme
-import androidx.ui.graphics.Color
-import androidx.ui.material.ColorPalette
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.darkColorPalette
-import androidx.ui.material.lightColorPalette
+import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.Colors
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.darkColors
+import androidx.compose.material.lightColors
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
-private val LightThemeColors = lightColorPalette(
+private val LightThemeColors = lightColors(
     primary = Red700,
     primaryVariant = Red900,
     onPrimary = Color.White,
@@ -18,7 +18,7 @@ private val LightThemeColors = lightColorPalette(
     error = Red800
 )
 
-private val DarkThemeColors = darkColorPalette(
+private val DarkThemeColors = darkColors(
     primary = Red300,
     primaryVariant = Red700,
     onPrimary = Color.Black,
@@ -28,7 +28,7 @@ private val DarkThemeColors = darkColorPalette(
 )
 
 @Composable
-val ColorPalette.snackbarAction: Color
+val Colors.snackbarAction: Color
     get() = if (isLight) Red300 else Red700
 
 @Composable

@@ -1,11 +1,12 @@
 package com.github.tehras.charts.bar.renderer.label
 
-import androidx.ui.geometry.Rect
-import androidx.ui.graphics.Canvas
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.drawscope.DrawScope
-import androidx.ui.unit.TextUnit
-import androidx.ui.unit.sp
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.Canvas
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.graphics.nativeCanvas
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.sp
 import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer.DrawLocation.*
 import com.github.tehras.charts.piechart.utils.toLegacyInt
 

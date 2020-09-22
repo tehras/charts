@@ -1,22 +1,22 @@
 package com.github.tehras.charts.ui.pie
 
-import androidx.compose.Composable
-import androidx.ui.core.Alignment
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Icon
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.layout.*
-import androidx.ui.material.*
-import androidx.ui.material.icons.Icons.Filled
-import androidx.ui.material.icons.filled.Add
-import androidx.ui.material.icons.filled.ArrowBack
-import androidx.ui.material.icons.filled.Remove
-import androidx.ui.text.TextStyle
-import androidx.ui.text.font.FontWeight
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Remove
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
-import androidx.ui.unit.dp
-import androidx.ui.unit.sp
 import com.github.tehras.charts.piechart.PieChart
 import com.github.tehras.charts.piechart.renderer.SimpleSliceDrawer
 import com.github.tehras.charts.theme.Margins
@@ -29,7 +29,7 @@ fun PieChartScreen() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
-                        Icon(Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack)
                     }
                 },
                 title = { Text(text = "Pie Chart") }
@@ -75,10 +75,10 @@ private fun SliceThicknessRow(sliceThickness: Float, onValueUpdated: (Float) -> 
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = Margins.verticalLarge),
-        verticalGravity = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            modifier = Modifier.gravity(Alignment.CenterVertically)
+            modifier = Modifier.align(Alignment.CenterVertically)
                 .padding(end = Margins.horizontal),
             text = "Slice thickness"
         )
@@ -96,7 +96,7 @@ private fun AddOrRemoveSliceRow(pieChartDataModel: PieChartDataModel) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = Margins.vertical),
-        verticalGravity = Alignment.CenterVertically,
+        verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         Button(
@@ -104,11 +104,11 @@ private fun AddOrRemoveSliceRow(pieChartDataModel: PieChartDataModel) {
             onClick = { pieChartDataModel.removeSlice() },
             shape = CircleShape
         ) {
-            Icon(Filled.Remove)
+            Icon(Icons.Filled.Remove)
         }
         Row(
             modifier = Modifier.padding(horizontal = Margins.horizontal),
-            verticalGravity = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text(text = "Slices: ")
             Text(
@@ -124,11 +124,10 @@ private fun AddOrRemoveSliceRow(pieChartDataModel: PieChartDataModel) {
             onClick = { pieChartDataModel.addSlice() },
             shape = CircleShape
         ) {
-            Icon(Filled.Add)
+            Icon(Icons.Filled.Add)
         }
     }
 }
-
 
 @Preview
 @Composable
