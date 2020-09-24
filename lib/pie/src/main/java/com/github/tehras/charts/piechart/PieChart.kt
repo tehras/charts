@@ -9,6 +9,7 @@ import androidx.compose.runtime.onCommit
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.drawCanvas
+import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.piechart.PieChartUtils.calculateAngle
 import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 import com.github.tehras.charts.piechart.renderer.SimpleSliceDrawer
@@ -73,7 +74,7 @@ private fun DrawChart(
     }
 }
 
-
+@Preview
 @Composable
 fun PieChartPreview() = PieChartData(
     slices = listOf(
