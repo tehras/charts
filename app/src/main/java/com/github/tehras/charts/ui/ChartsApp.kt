@@ -1,9 +1,9 @@
 package com.github.tehras.charts.ui
 
-import androidx.compose.Composable
-import androidx.ui.animation.Crossfade
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Surface
+import androidx.compose.animation.Crossfade
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
 import com.github.tehras.charts.theme.ChartsTheme
 import com.github.tehras.charts.ui.bar.BarChartScreen
 import com.github.tehras.charts.ui.line.LineChartScreen

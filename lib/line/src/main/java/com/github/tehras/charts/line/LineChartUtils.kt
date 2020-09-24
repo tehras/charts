@@ -1,11 +1,11 @@
 package com.github.tehras.charts.line
 
-import androidx.ui.geometry.Offset
-import androidx.ui.geometry.Rect
-import androidx.ui.geometry.Size
-import androidx.ui.graphics.Path
-import androidx.ui.unit.Density
-import androidx.ui.unit.dp
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.dp
 
 object LineChartUtils {
     fun calculateDrawableArea(

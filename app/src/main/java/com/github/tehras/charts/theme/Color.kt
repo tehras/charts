@@ -1,6 +1,6 @@
 package com.github.tehras.charts.theme
 
-import androidx.ui.graphics.Color
+import androidx.compose.ui.graphics.Color
 
 val Red200 = Color(0xfff297a2)
 val Red300 = Color(0xffea6d7e)

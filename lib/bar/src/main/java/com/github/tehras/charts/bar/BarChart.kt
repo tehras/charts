@@ -1,14 +1,14 @@
 package com.github.tehras.charts.bar
 
-import androidx.animation.AnimationSpec
-import androidx.compose.Composable
-import androidx.compose.onPreCommit
-import androidx.ui.animation.animatedFloat
-import androidx.ui.core.Modifier
-import androidx.ui.core.drawBehind
-import androidx.ui.foundation.Canvas
-import androidx.ui.graphics.drawscope.drawCanvas
-import androidx.ui.layout.fillMaxSize
+import androidx.compose.animation.animatedFloat
+import androidx.compose.animation.core.AnimationSpec
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.onCommit
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.drawBehind
+import androidx.compose.ui.graphics.drawscope.drawCanvas
 import com.github.tehras.charts.bar.BarChartUtils.axisAreas
 import com.github.tehras.charts.bar.BarChartUtils.barDrawableArea
 import com.github.tehras.charts.bar.BarChartUtils.forEachWithArea
@@ -26,7 +26,7 @@ import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 fun BarChart(
     barChartData: BarChartData,
     modifier: Modifier = Modifier.fillMaxSize(),
-    animation: AnimationSpec<Float> = SimpleChartAnimation,
+    animation: AnimationSpec<Float> = SimpleChartAnimation(),
     barDrawer: BarDrawer = SimpleBarDrawer(),
     xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),
     yAxisDrawer: YAxisDrawer = SimpleYAxisDrawer(),
@@ -34,10 +34,10 @@ fun BarChart(
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)
 
-    onPreCommit(barChartData.bars) {
+    onCommit(barChartData.bars, {
         transitionProgress.snapTo(0f)
         transitionProgress.animateTo(1f, anim = animation)
-    }
+    })
 
     val progress = transitionProgress.value
 

@@ -1,8 +1,8 @@
 package com.github.tehras.charts.line.renderer.point
 
-import androidx.ui.geometry.Offset
-import androidx.ui.graphics.Canvas
-import androidx.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Canvas
+import androidx.compose.ui.graphics.drawscope.DrawScope
 
 interface PointDrawer {
     fun drawPoint(

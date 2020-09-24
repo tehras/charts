@@ -1,6 +1,6 @@
 package com.github.tehras.charts.piechart
 
-import androidx.ui.graphics.Color
+import androidx.compose.ui.graphics.Color
 
 data class PieChartData(
     val slices: List<Slice>

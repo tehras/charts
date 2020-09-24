@@ -1,11 +1,11 @@
 @file:JvmName("Deps")
 
 object Versions {
-    const val composeVersion = "1.4.0-dev-withExperimentalGoogleExtensions-20200720"
-    const val compose = "0.1.0-dev15"
-    const val kotlin = "1.4-M3"
-    const val targetSdk = 29
-    const val buildVersion = "29.0.3"
+    const val composeCompilerVersion = "1.4.0"
+    const val compose = "1.0.0-alpha03"
+    const val kotlin = "1.4.10"
+    const val targetSdk = 30
+    const val buildVersion = "30"
 }
 
 object Compose {

@@ -1,6 +1,6 @@
 package com.github.tehras.charts.bar
 
-import androidx.ui.graphics.Color
+import androidx.compose.ui.graphics.Color
 
 data class BarChartData(
     val bars: List<Bar>,

@@ -1,11 +1,11 @@
 package com.github.tehras.charts.piechart.renderer
 
-import androidx.ui.geometry.Rect
-import androidx.ui.geometry.Size
-import androidx.ui.graphics.Canvas
-import androidx.ui.graphics.Paint
-import androidx.ui.graphics.PaintingStyle
-import androidx.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.Canvas
+import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.graphics.PaintingStyle
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import com.github.tehras.charts.piechart.PieChartData.Slice
 
 class SimpleSliceDrawer(private val sliceThickness: Float = 25f) : SliceDrawer {
@@ -17,7 +17,7 @@ class SimpleSliceDrawer(private val sliceThickness: Float = 25f) : SliceDrawer {
 
     private val sectionPaint = Paint().apply {
         isAntiAlias = true
-        style = PaintingStyle.stroke
+        style = PaintingStyle.Stroke
     }
 
     override fun drawSlice(

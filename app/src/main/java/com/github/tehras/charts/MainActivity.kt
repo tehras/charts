@@ -2,7 +2,7 @@ package com.github.tehras.charts
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.ui.core.setContent
+import androidx.compose.ui.platform.setContent
 import com.github.tehras.charts.ui.ChartsApp
 
 class MainActivity : AppCompatActivity() {

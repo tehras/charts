@@ -1,6 +1,6 @@
 package com.github.tehras.charts.piechart.utils
 
-import androidx.ui.graphics.Color
+import androidx.compose.ui.graphics.Color
 
 fun Color.toLegacyInt(): Int {
     return android.graphics.Color.argb(

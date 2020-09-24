@@ -17,5 +17,5 @@ dependencies {
   implementation(Compose.layout)
   implementation(Compose.foundation)
   implementation(Compose.runtime)
-  debugImplementation(Compose.tooling)
+  implementation(Compose.tooling)
 }

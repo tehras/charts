@@ -1,16 +1,13 @@
 package com.github.tehras.charts.line.renderer.yaxis
 
-import androidx.ui.geometry.Offset
-import androidx.ui.geometry.Rect
-import androidx.ui.graphics.Canvas
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.Paint
-import androidx.ui.graphics.PaintingStyle
-import androidx.ui.graphics.drawscope.DrawScope
-import androidx.ui.unit.Dp
-import androidx.ui.unit.TextUnit
-import androidx.ui.unit.dp
-import androidx.ui.unit.sp
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.github.tehras.charts.piechart.utils.toLegacyInt
 import kotlin.math.max
 import kotlin.math.roundToInt
@@ -28,7 +25,7 @@ class SimpleYAxisDrawer(
     private val axisLinePaint = Paint().apply {
         isAntiAlias = true
         color = axisLineColor
-        style = PaintingStyle.stroke
+        style = PaintingStyle.Stroke
     }
     private val textPaint = android.graphics.Paint().apply {
         isAntiAlias = true

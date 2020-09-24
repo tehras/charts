@@ -1,27 +1,26 @@
 package com.github.tehras.charts.ui.bar
 
-import androidx.compose.Composable
-import androidx.compose.onCommit
-import androidx.ui.core.Alignment.Companion.CenterHorizontally
-import androidx.ui.core.Alignment.Companion.CenterVertically
-import androidx.ui.core.Modifier
-import androidx.ui.foundation.Border
-import androidx.ui.foundation.Icon
-import androidx.ui.foundation.Text
-import androidx.ui.foundation.shape.corner.CircleShape
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.SolidColor
-import androidx.ui.layout.*
-import androidx.ui.layout.ColumnScope.gravity
-import androidx.ui.material.*
-import androidx.ui.material.icons.Icons.Filled
-import androidx.ui.material.icons.filled.Add
-import androidx.ui.material.icons.filled.ArrowBack
-import androidx.ui.material.icons.filled.Remove
-import androidx.ui.text.TextStyle
-import androidx.ui.text.font.FontWeight
-import androidx.ui.unit.dp
-import androidx.ui.unit.sp
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Remove
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.onCommit
+import androidx.compose.ui.Alignment.Companion.CenterVertically
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.bar.BarChart
 import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer.DrawLocation
 import com.github.tehras.charts.theme.Margins
@@ -34,7 +33,7 @@ fun BarChartScreen() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
-                        Icon(Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack)
                     }
                 },
                 title = { Text(text = "Bar Chart") }
@@ -79,13 +78,13 @@ fun DrawValueLocation(
     Row(
         modifier = Modifier.fillMaxWidth()
             .padding(top = Margins.verticalLarge),
-        verticalGravity = CenterVertically
+        verticalAlignment = CenterVertically
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth()
                 .padding(horizontal = Margins.horizontal, vertical = Margins.vertical)
-                .gravity(CenterHorizontally)
+                .align(CenterVertically)
         ) {
             DrawLocation.values().forEach { location ->
                 val color = if (selectedAlignment == location) {
@@ -95,7 +94,7 @@ fun DrawValueLocation(
                 }
 
                 TextButton(
-                    border = Border(2.dp, SolidColor(color)),
+                    border = BorderStroke(2.dp, SolidColor(color)),
                     onClick = { newLocation(location) }
                 ) {
                     Text(location.name)
@@ -111,17 +110,17 @@ fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = Margins.vertical),
-        verticalGravity = CenterVertically,
+        verticalAlignment = CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         Button(
             enabled = barChartDataModel.bars.size > 2,
             onClick = { barChartDataModel.removeBar() },
             shape = CircleShape
-        ) { Icon(Filled.Remove) }
+        ) { Icon(Icons.Filled.Remove) }
         Row(
             modifier = Modifier.padding(horizontal = Margins.horizontal),
-            verticalGravity = CenterVertically
+            verticalAlignment = CenterVertically
         ) {
             Text(text = "Bars: ")
             Text(
@@ -136,7 +135,7 @@ fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
             enabled = barChartDataModel.bars.size < 6,
             onClick = { barChartDataModel.addBar() },
             shape = CircleShape
-        ) { Icon(Filled.Add) }
+        ) { Icon(Icons.Filled.Add) }
     }
 }
 
@@ -153,3 +152,7 @@ private fun BarChartRow(barChartDataModel: BarChartDataModel) {
         )
     }
 }
+
+@Preview
+@Composable
+fun BarChartPreview() = BarChartScreen()

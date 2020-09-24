@@ -1,14 +1,15 @@
 package com.github.tehras.charts.line.renderer.point
 
-import androidx.ui.geometry.Offset
-import androidx.ui.graphics.Canvas
-import androidx.ui.graphics.Color
-import androidx.ui.graphics.Paint
-import androidx.ui.graphics.PaintingStyle
-import androidx.ui.graphics.drawscope.DrawScope
-import androidx.ui.unit.Density
-import androidx.ui.unit.Dp
-import androidx.ui.unit.dp
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Canvas
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Paint
+import androidx.compose.ui.graphics.PaintingStyle
+import androidx.compose.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+
 
 data class FilledCircularPointDrawer(
     val diameter: Dp = 8.dp,
@@ -17,7 +18,7 @@ data class FilledCircularPointDrawer(
 
     private val paint = Paint().apply {
         color = this@FilledCircularPointDrawer.color
-        style = PaintingStyle.fill
+        style = PaintingStyle.Fill
         isAntiAlias = true
     }
 

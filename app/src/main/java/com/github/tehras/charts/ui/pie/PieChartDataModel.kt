@@ -1,9 +1,9 @@
 package com.github.tehras.charts.ui.pie
 
-import androidx.compose.getValue
-import androidx.compose.mutableStateOf
-import androidx.compose.setValue
-import androidx.ui.graphics.Color
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import com.github.tehras.charts.piechart.PieChartData
 
 class PieChartDataModel {

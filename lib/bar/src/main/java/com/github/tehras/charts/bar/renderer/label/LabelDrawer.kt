@@ -1,8 +1,8 @@
 package com.github.tehras.charts.bar.renderer.label
 
-import androidx.ui.geometry.Rect
-import androidx.ui.graphics.Canvas
-import androidx.ui.graphics.drawscope.DrawScope
+import androidx.compose.ui.geometry.Rect
+import androidx.compose.ui.graphics.Canvas
+import androidx.compose.ui.graphics.drawscope.DrawScope
 
 interface LabelDrawer {
     fun requiredXAxisHeight(drawScope: DrawScope): Float = 0f
