@@ -1,14 +1,14 @@
 package com.github.tehras.charts.ui.selector
 
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.Preview
 import com.github.tehras.charts.theme.Margins
 import com.github.tehras.charts.ui.ChartScreen
 import com.github.tehras.charts.ui.ChartScreen.*

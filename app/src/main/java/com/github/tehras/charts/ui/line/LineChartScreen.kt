@@ -2,9 +2,7 @@ package com.github.tehras.charts.ui.line
 
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Box
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
+import androidx.compose.material.Icon
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -14,8 +12,8 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.line.LineChart
 import com.github.tehras.charts.theme.Margins.horizontal
 import com.github.tehras.charts.theme.Margins.vertical
@@ -71,7 +69,8 @@ fun HorizontalOffsetSelector(lineChartDataModel: LineChartDataModel) {
 
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(horizontal = horizontal, vertical = vertical)
                 .align(CenterVertically)
         ) {
@@ -103,7 +102,8 @@ fun OffsetProgress(lineChartDataModel: LineChartDataModel) {
 
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .align(CenterVertically)
         ) {
             Slider(
@@ -117,7 +117,11 @@ fun OffsetProgress(lineChartDataModel: LineChartDataModel) {
 
 @Composable
 fun LineChartRow(lineChartDataModel: LineChartDataModel) {
-    Box(modifier = Modifier.height(250.dp).fillMaxWidth()) {
+    Box(
+        modifier = Modifier
+            .height(250.dp)
+            .fillMaxWidth()
+    ) {
         LineChart(
             lineChartData = lineChartDataModel.lineChartData,
             horizontalOffset = lineChartDataModel.horizontalOffset,

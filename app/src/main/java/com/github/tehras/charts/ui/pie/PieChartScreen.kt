@@ -1,7 +1,6 @@
 package com.github.tehras.charts.ui.pie
 
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
+import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -10,13 +9,14 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.piechart.PieChart
 import com.github.tehras.charts.piechart.renderer.SimpleSliceDrawer
 import com.github.tehras.charts.theme.Margins
@@ -41,7 +41,7 @@ fun PieChartScreen() {
 
 @Composable
 private fun PieChartScreenContent() {
-    val pieChartDataModel = PieChartDataModel()
+    val pieChartDataModel = remember { PieChartDataModel() }
 
     Column(
         modifier = Modifier.padding(
@@ -59,7 +59,12 @@ private fun PieChartScreenContent() {
 
 @Composable
 private fun PieChartRow(pieChartDataModel: PieChartDataModel) {
-    Row(modifier = Modifier.fillMaxWidth().height(150.dp).padding(vertical = Margins.vertical)) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(150.dp)
+            .padding(vertical = Margins.vertical)
+    ) {
         PieChart(
             pieChartData = pieChartDataModel.pieChartData,
             sliceDrawer = SimpleSliceDrawer(
@@ -78,9 +83,10 @@ private fun SliceThicknessRow(sliceThickness: Float, onValueUpdated: (Float) -> 
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            modifier = Modifier.align(Alignment.CenterVertically)
-                .padding(end = Margins.horizontal),
-            text = "Slice thickness"
+            text = "Slice thickness",
+            modifier = Modifier
+                .align(Alignment.CenterVertically)
+                .padding(end = Margins.horizontal)
         )
         Slider(
             value = sliceThickness,

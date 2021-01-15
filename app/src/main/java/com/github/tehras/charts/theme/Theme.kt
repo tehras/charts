@@ -28,10 +28,6 @@ private val DarkThemeColors = darkColors(
 )
 
 @Composable
-val Colors.snackbarAction: Color
-    get() = if (isLight) Red300 else Red700
-
-@Composable
 fun ChartsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable() () -> Unit

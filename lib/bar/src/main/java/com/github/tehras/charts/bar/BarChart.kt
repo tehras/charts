@@ -7,8 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.onCommit
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.drawBehind
-import androidx.compose.ui.graphics.drawscope.drawCanvas
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import com.github.tehras.charts.bar.BarChartUtils.axisAreas
 import com.github.tehras.charts.bar.BarChartUtils.barDrawableArea
 import com.github.tehras.charts.bar.BarChartUtils.forEachWithArea
@@ -25,7 +25,7 @@ import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 @Composable
 fun BarChart(
     barChartData: BarChartData,
-    modifier: Modifier = Modifier.fillMaxSize(),
+    modifier: Modifier = Modifier,
     animation: AnimationSpec<Float> = SimpleChartAnimation(),
     barDrawer: BarDrawer = SimpleBarDrawer(),
     xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),
@@ -42,8 +42,9 @@ fun BarChart(
     val progress = transitionProgress.value
 
     Canvas(modifier = modifier
+        .fillMaxSize()
         .drawBehind {
-            drawCanvas { canvas, size ->
+            drawIntoCanvas { canvas ->
                 val (xAxisArea, yAxisArea) = axisAreas(
                     drawScope = this,
                     totalSize = size,
@@ -87,7 +88,7 @@ fun BarChart(
          *  APIs we have to use Android's `nativeCanvas` which seems to be drawn behind
          *  Compose's canvas.
          */
-        drawCanvas { canvas, size ->
+        drawIntoCanvas { canvas ->
             val (xAxisArea, yAxisArea) = axisAreas(
                 drawScope = this,
                 totalSize = size,

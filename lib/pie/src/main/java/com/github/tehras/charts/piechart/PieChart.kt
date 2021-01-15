@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.onCommit
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.drawCanvas
-import androidx.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+import androidx.compose.ui.tooling.preview.Preview
 import com.github.tehras.charts.piechart.PieChartUtils.calculateAngle
 import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 import com.github.tehras.charts.piechart.renderer.SimpleSliceDrawer
@@ -19,7 +19,7 @@ import com.github.tehras.charts.piechart.renderer.SliceDrawer
 @Composable
 fun PieChart(
     pieChartData: PieChartData,
-    modifier: Modifier = Modifier.fillMaxSize(),
+    modifier: Modifier = Modifier,
     animation: AnimationSpec<Float> = SimpleChartAnimation(),
     sliceDrawer: SliceDrawer = SimpleSliceDrawer()
 ) {
@@ -33,7 +33,7 @@ fun PieChart(
 
     DrawChart(
         pieChartData = pieChartData,
-        modifier = modifier,
+        modifier = modifier.fillMaxSize(),
         progress = transitionProgress.value,
         sliceDrawer = sliceDrawer
     )
@@ -49,7 +49,7 @@ private fun DrawChart(
     val slices = pieChartData.slices
 
     Canvas(modifier = modifier) {
-        drawCanvas { canvas, size ->
+        drawIntoCanvas {
             var startArc = 0f
 
             slices.forEach { slice ->
@@ -61,7 +61,7 @@ private fun DrawChart(
 
                 sliceDrawer.drawSlice(
                     drawScope = this,
-                    canvas = canvas,
+                    canvas = drawContext.canvas,
                     area = size,
                     startAngle = startArc,
                     sweepAngle = arc,
@@ -76,10 +76,12 @@ private fun DrawChart(
 
 @Preview
 @Composable
-fun PieChartPreview() = PieChartData(
-    slices = listOf(
-        PieChartData.Slice(25f, Color.Red),
-        PieChartData.Slice(42f, Color.Blue),
-        PieChartData.Slice(23f, Color.Green)
+fun PieChartPreview() = PieChart(
+    pieChartData = PieChartData(
+        slices = listOf(
+            PieChartData.Slice(25f, Color.Red),
+            PieChartData.Slice(42f, Color.Blue),
+            PieChartData.Slice(23f, Color.Green)
+        )
     )
 )

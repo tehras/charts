@@ -1,11 +1,11 @@
 @file:JvmName("Deps")
 
 object Versions {
-    const val composeCompilerVersion = "1.4.0"
-    const val compose = "1.0.0-alpha03"
-    const val kotlin = "1.4.10"
+    const val composeCompilerVersion = "1.4.21"
+    const val compose = "1.0.0-alpha10"
+    const val kotlin = "1.4.21"
     const val targetSdk = 30
-    const val buildVersion = "30"
+    const val buildVersion = "30.0.2"
 }
 
 object Compose {
@@ -16,7 +16,7 @@ object Compose {
     const val material = "androidx.compose.material:material:${Versions.compose}"
     const val materialIconsExt = "androidx.compose.material:material-icons-extended:${Versions.compose}"
     const val runtime = "androidx.compose.runtime:runtime:${Versions.compose}"
-    const val tooling = "androidx.ui:ui-tooling:${Versions.compose}"
+    const val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
 }
 
 object Android {

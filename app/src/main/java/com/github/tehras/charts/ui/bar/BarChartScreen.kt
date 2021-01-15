@@ -1,8 +1,6 @@
 package com.github.tehras.charts.ui.bar
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Icon
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
@@ -18,9 +16,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.ui.tooling.preview.Preview
 import com.github.tehras.charts.bar.BarChart
 import com.github.tehras.charts.bar.renderer.label.SimpleValueDrawer.DrawLocation
 import com.github.tehras.charts.theme.Margins

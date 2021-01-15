@@ -8,7 +8,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.onCommit
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.drawscope.drawCanvas
+import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
+
 import com.github.tehras.charts.line.LineChartUtils.calculateDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.calculateLinePath
 import com.github.tehras.charts.line.LineChartUtils.calculatePointLocation
@@ -29,7 +30,7 @@ import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
 @Composable
 fun LineChart(
     lineChartData: LineChartData,
-    modifier: Modifier = Modifier.fillMaxSize(),
+    modifier: Modifier = Modifier,
     animation: AnimationSpec<Float> = SimpleChartAnimation(),
     pointDrawer: PointDrawer = FilledCircularPointDrawer(),
     lineDrawer: LineDrawer = SolidLineDrawer(),
@@ -48,8 +49,8 @@ fun LineChart(
         transitionProgress.animateTo(1f, animation)
     }
 
-    Canvas(modifier = modifier) {
-        drawCanvas { canvas, size ->
+    Canvas(modifier = modifier.fillMaxSize()) {
+        drawIntoCanvas { canvas ->
             val yAxisDrawableArea = calculateYAxisDrawableArea(
                 xAxisLabelSize = xAxisDrawer.requiredHeight(this),
                 size = size
