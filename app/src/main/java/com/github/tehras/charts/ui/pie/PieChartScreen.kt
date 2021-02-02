@@ -29,7 +29,7 @@ fun PieChartScreen() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
-                        Icon(Icons.Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Go back to home")
                     }
                 },
                 title = { Text(text = "Pie Chart") }
@@ -110,7 +110,7 @@ private fun AddOrRemoveSliceRow(pieChartDataModel: PieChartDataModel) {
             onClick = { pieChartDataModel.removeSlice() },
             shape = CircleShape
         ) {
-            Icon(Icons.Filled.Remove)
+            Icon(Icons.Filled.Remove, contentDescription = "Remove slice from pie chart")
         }
         Row(
             modifier = Modifier.padding(horizontal = Margins.horizontal),
@@ -130,7 +130,7 @@ private fun AddOrRemoveSliceRow(pieChartDataModel: PieChartDataModel) {
             onClick = { pieChartDataModel.addSlice() },
             shape = CircleShape
         ) {
-            Icon(Icons.Filled.Add)
+            Icon(Icons.Filled.Add, contentDescription = "Add slice to pie chart")
         }
     }
 }

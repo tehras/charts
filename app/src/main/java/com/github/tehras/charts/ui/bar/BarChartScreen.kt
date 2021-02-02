@@ -1,15 +1,26 @@
 package com.github.tehras.charts.ui.bar
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.onCommit
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,7 +42,7 @@ fun BarChartScreen() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
-                        Icon(Icons.Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Go back to home")
                     }
                 },
                 title = { Text(text = "Bar Chart") }
@@ -64,13 +75,8 @@ fun DrawValueLocation(
     barChartDataModel: BarChartDataModel,
     newLocation: (DrawLocation) -> Unit
 ) {
-    var selectedAlignment = barChartDataModel.labelLocation
-
-    // There might be a better way to do this, but `DrawValueLocation` wasn't updating because
-    // nothing here was a state. So wrapping `barChartDataModel` with `onCommit` will get a
-    // callback when `labelDrawer` is updated and force the view below to re-render.
-    onCommit(barChartDataModel.labelDrawer) {
-        selectedAlignment = barChartDataModel.labelLocation
+    val selectedAlignment = remember(barChartDataModel.labelDrawer) {
+        barChartDataModel.labelLocation
     }
 
     Row(
@@ -115,7 +121,7 @@ fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
             enabled = barChartDataModel.bars.size > 2,
             onClick = { barChartDataModel.removeBar() },
             shape = CircleShape
-        ) { Icon(Icons.Filled.Remove) }
+        ) { Icon(Icons.Filled.Remove, contentDescription = "Remove bar from chart") }
         Row(
             modifier = Modifier.padding(horizontal = Margins.horizontal),
             verticalAlignment = CenterVertically
@@ -133,7 +139,7 @@ fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
             enabled = barChartDataModel.bars.size < 6,
             onClick = { barChartDataModel.addBar() },
             shape = CircleShape
-        ) { Icon(Icons.Filled.Add) }
+        ) { Icon(Icons.Filled.Add, contentDescription = "Add bar to chart") }
     }
 }
 

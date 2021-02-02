@@ -28,7 +28,7 @@ fun LineChartScreen() {
             TopAppBar(
                 navigationIcon = {
                     IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
-                        Icon(Icons.Filled.ArrowBack)
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Go back to home")
                     }
                 },
                 title = { Text(text = "Line Chart") }
