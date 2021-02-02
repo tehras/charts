@@ -1,6 +1,5 @@
 package com.github.tehras.charts.ui.pie
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
