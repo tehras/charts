@@ -5,13 +5,13 @@ import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.onCommit
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.tehras.charts.piechart.PieChartUtils.calculateAngle
-import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
+import com.github.tehras.charts.piechart.animation.simpleChartAnimation
 import com.github.tehras.charts.piechart.renderer.SimpleSliceDrawer
 import com.github.tehras.charts.piechart.renderer.SliceDrawer
 
@@ -20,16 +20,16 @@ import com.github.tehras.charts.piechart.renderer.SliceDrawer
 fun PieChart(
     pieChartData: PieChartData,
     modifier: Modifier = Modifier,
-    animation: AnimationSpec<Float> = SimpleChartAnimation(),
+    animation: AnimationSpec<Float> = simpleChartAnimation(),
     sliceDrawer: SliceDrawer = SimpleSliceDrawer()
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)
 
     // When slices value changes we want to re-animated the chart.
-    onCommit(pieChartData.slices, {
-        transitionProgress.snapTo(0f)
+    DisposableEffect(pieChartData.slices) {
         transitionProgress.animateTo(1f, anim = animation)
-    })
+        onDispose { transitionProgress.snapTo(0f) }
+    }
 
     DrawChart(
         pieChartData = pieChartData,

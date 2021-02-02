@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
     dependencies {
-        classpath("com.android.tools.build:gradle:4.2.0-beta03")
+        classpath("com.android.tools.build:gradle:7.0.0-alpha05")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
     }
 

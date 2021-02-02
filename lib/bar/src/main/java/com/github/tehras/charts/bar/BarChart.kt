@@ -5,7 +5,7 @@ import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.onCommit
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
@@ -20,24 +20,23 @@ import com.github.tehras.charts.bar.renderer.xaxis.SimpleXAxisDrawer
 import com.github.tehras.charts.bar.renderer.xaxis.XAxisDrawer
 import com.github.tehras.charts.bar.renderer.yaxis.SimpleYAxisDrawer
 import com.github.tehras.charts.bar.renderer.yaxis.YAxisDrawer
-import com.github.tehras.charts.piechart.animation.SimpleChartAnimation
+import com.github.tehras.charts.piechart.animation.simpleChartAnimation
 
 @Composable
 fun BarChart(
     barChartData: BarChartData,
     modifier: Modifier = Modifier,
-    animation: AnimationSpec<Float> = SimpleChartAnimation(),
+    animation: AnimationSpec<Float> = simpleChartAnimation(),
     barDrawer: BarDrawer = SimpleBarDrawer(),
     xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),
     yAxisDrawer: YAxisDrawer = SimpleYAxisDrawer(),
     labelDrawer: LabelDrawer = SimpleValueDrawer()
 ) {
     val transitionProgress = animatedFloat(initVal = 0f)
-
-    onCommit(barChartData.bars, {
-        transitionProgress.snapTo(0f)
+    DisposableEffect(barChartData.bars) {
         transitionProgress.animateTo(1f, anim = animation)
-    })
+        onDispose { transitionProgress.snapTo(0f) }
+    }
 
     val progress = transitionProgress.value
 

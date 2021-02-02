@@ -30,7 +30,7 @@ private val DarkThemeColors = darkColors(
 @Composable
 fun ChartsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable() () -> Unit
+    content: @Composable () -> Unit
 ) {
     MaterialTheme(
         colors = if (darkTheme) DarkThemeColors else LightThemeColors,
