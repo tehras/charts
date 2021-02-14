@@ -1,7 +1,7 @@
 # Compose Charts
 
 This is an exploratory playground library to figure out how to Draw and animate using Android Jetpack Compose library.
-Currently this is using `1.0.0-alpha11` library.
+Currently this is using `1.0.0-alpha12` library.
 
 ## How it looks:
 
