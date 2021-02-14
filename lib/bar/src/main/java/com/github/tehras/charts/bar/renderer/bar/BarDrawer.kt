@@ -6,10 +6,10 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import com.github.tehras.charts.bar.BarChartData
 
 interface BarDrawer {
-    fun drawBar(
-        drawScope: DrawScope,
-        canvas: Canvas,
-        barArea: Rect,
-        bar: BarChartData.Bar
-    )
+  fun drawBar(
+    drawScope: DrawScope,
+    canvas: Canvas,
+    barArea: Rect,
+    bar: BarChartData.Bar
+  )
 }

@@ -1,8 +1,19 @@
 package com.github.tehras.charts.ui.pie
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
+import androidx.compose.material.Button
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Slider
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
@@ -23,115 +34,115 @@ import com.github.tehras.charts.ui.ChartScreenStatus
 
 @Composable
 fun PieChartScreen() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                navigationIcon = {
-                    IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Go back to home")
-                    }
-                },
-                title = { Text(text = "Pie Chart") }
-            )
+  Scaffold(
+    topBar = {
+      TopAppBar(
+        navigationIcon = {
+          IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
+            Icon(Icons.Filled.ArrowBack, contentDescription = "Go back to home")
+          }
         },
-        bodyContent = { PieChartScreenContent() }
-    )
+        title = { Text(text = "Pie Chart") }
+      )
+    },
+    bodyContent = { PieChartScreenContent() }
+  )
 }
 
 @Composable
 private fun PieChartScreenContent() {
-    val pieChartDataModel = remember { PieChartDataModel() }
+  val pieChartDataModel = remember { PieChartDataModel() }
 
-    Column(
-        modifier = Modifier.padding(
-            horizontal = Margins.horizontal,
-            vertical = Margins.vertical
-        )
-    ) {
-        PieChartRow(pieChartDataModel)
-        SliceThicknessRow(pieChartDataModel.sliceThickness) {
-            pieChartDataModel.sliceThickness = it
-        }
-        AddOrRemoveSliceRow(pieChartDataModel)
+  Column(
+    modifier = Modifier.padding(
+      horizontal = Margins.horizontal,
+      vertical = Margins.vertical
+    )
+  ) {
+    PieChartRow(pieChartDataModel)
+    SliceThicknessRow(pieChartDataModel.sliceThickness) {
+      pieChartDataModel.sliceThickness = it
     }
+    AddOrRemoveSliceRow(pieChartDataModel)
+  }
 }
 
 @Composable
 private fun PieChartRow(pieChartDataModel: PieChartDataModel) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(150.dp)
-            .padding(vertical = Margins.vertical)
-    ) {
-        PieChart(
-            pieChartData = pieChartDataModel.pieChartData,
-            sliceDrawer = SimpleSliceDrawer(
-                sliceThickness = pieChartDataModel.sliceThickness
-            )
-        )
-    }
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .height(150.dp)
+      .padding(vertical = Margins.vertical)
+  ) {
+    PieChart(
+      pieChartData = pieChartDataModel.pieChartData,
+      sliceDrawer = SimpleSliceDrawer(
+        sliceThickness = pieChartDataModel.sliceThickness
+      )
+    )
+  }
 }
 
 @Composable
 private fun SliceThicknessRow(sliceThickness: Float, onValueUpdated: (Float) -> Unit) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = Margins.verticalLarge),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = "Slice thickness",
-            modifier = Modifier
-                .align(Alignment.CenterVertically)
-                .padding(end = Margins.horizontal)
-        )
-        Slider(
-            value = sliceThickness,
-            onValueChange = { onValueUpdated(it) },
-            valueRange = 10f.rangeTo(100f)
-        )
-    }
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(vertical = Margins.verticalLarge),
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    Text(
+      text = "Slice thickness",
+      modifier = Modifier
+        .align(Alignment.CenterVertically)
+        .padding(end = Margins.horizontal)
+    )
+    Slider(
+      value = sliceThickness,
+      onValueChange = { onValueUpdated(it) },
+      valueRange = 10f.rangeTo(100f)
+    )
+  }
 }
 
 @Composable
 private fun AddOrRemoveSliceRow(pieChartDataModel: PieChartDataModel) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = Margins.vertical),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(vertical = Margins.vertical),
+    verticalAlignment = Alignment.CenterVertically,
+    horizontalArrangement = Arrangement.Center
+  ) {
+    Button(
+      enabled = pieChartDataModel.slices.size > 3,
+      onClick = { pieChartDataModel.removeSlice() },
+      shape = CircleShape
     ) {
-        Button(
-            enabled = pieChartDataModel.slices.size > 3,
-            onClick = { pieChartDataModel.removeSlice() },
-            shape = CircleShape
-        ) {
-            Icon(Icons.Filled.Remove, contentDescription = "Remove slice from pie chart")
-        }
-        Row(
-            modifier = Modifier.padding(horizontal = Margins.horizontal),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(text = "Slices: ")
-            Text(
-                text = pieChartDataModel.slices.count().toString(),
-                style = TextStyle(
-                    fontWeight = FontWeight.ExtraBold,
-                    fontSize = 18.sp
-                )
-            )
-        }
-        Button(
-            enabled = pieChartDataModel.slices.size < 9,
-            onClick = { pieChartDataModel.addSlice() },
-            shape = CircleShape
-        ) {
-            Icon(Icons.Filled.Add, contentDescription = "Add slice to pie chart")
-        }
+      Icon(Icons.Filled.Remove, contentDescription = "Remove slice from pie chart")
     }
+    Row(
+      modifier = Modifier.padding(horizontal = Margins.horizontal),
+      verticalAlignment = Alignment.CenterVertically
+    ) {
+      Text(text = "Slices: ")
+      Text(
+        text = pieChartDataModel.slices.count().toString(),
+        style = TextStyle(
+          fontWeight = FontWeight.ExtraBold,
+          fontSize = 18.sp
+        )
+      )
+    }
+    Button(
+      enabled = pieChartDataModel.slices.size < 9,
+      onClick = { pieChartDataModel.addSlice() },
+      shape = CircleShape
+    ) {
+      Icon(Icons.Filled.Add, contentDescription = "Add slice to pie chart")
+    }
+  }
 }
 
 @Preview

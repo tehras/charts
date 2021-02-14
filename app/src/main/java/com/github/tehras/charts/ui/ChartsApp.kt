@@ -12,21 +12,21 @@ import com.github.tehras.charts.ui.selector.SelectChartScreen
 
 @Composable
 fun ChartsApp() {
-    ChartsTheme {
-        AppContent()
-    }
+  ChartsTheme {
+    AppContent()
+  }
 }
 
 @Composable
 fun AppContent() {
-    Crossfade(ChartScreenStatus.currentChart) { screen ->
-        Surface(color = MaterialTheme.colors.background) {
-            when (screen) {
-                ChartScreen.SelectChart -> SelectChartScreen()
-                ChartScreen.Pie -> PieChartScreen()
-                ChartScreen.Bar -> BarChartScreen()
-                ChartScreen.Line -> LineChartScreen()
-            }
-        }
+  Crossfade(ChartScreenStatus.currentChart) { screen ->
+    Surface(color = MaterialTheme.colors.background) {
+      when (screen) {
+        ChartScreen.SelectChart -> SelectChartScreen()
+        ChartScreen.Pie -> PieChartScreen()
+        ChartScreen.Bar -> BarChartScreen()
+        ChartScreen.Line -> LineChartScreen()
+      }
     }
+  }
 }

@@ -37,124 +37,124 @@ import com.github.tehras.charts.ui.ChartScreenStatus
 
 @Composable
 fun BarChartScreen() {
-    Scaffold(
-        topBar = {
-            TopAppBar(
-                navigationIcon = {
-                    IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Go back to home")
-                    }
-                },
-                title = { Text(text = "Bar Chart") }
-            )
+  Scaffold(
+    topBar = {
+      TopAppBar(
+        navigationIcon = {
+          IconButton(onClick = { ChartScreenStatus.navigateHome() }) {
+            Icon(Icons.Filled.ArrowBack, contentDescription = "Go back to home")
+          }
         },
-        bodyContent = { BarChartScreenContent() }
-    )
+        title = { Text(text = "Bar Chart") }
+      )
+    },
+    bodyContent = { BarChartScreenContent() }
+  )
 }
 
 @Composable
 private fun BarChartScreenContent() {
-    val barChartDataModel = BarChartDataModel()
+  val barChartDataModel = BarChartDataModel()
 
-    Column(
-        modifier = Modifier.padding(
-            horizontal = Margins.horizontal,
-            vertical = Margins.vertical
-        )
-    ) {
-        BarChartRow(barChartDataModel)
-        DrawValueLocation(barChartDataModel) {
-            barChartDataModel.labelLocation = it
-        }
-        AddOrRemoveBar(barChartDataModel)
+  Column(
+    modifier = Modifier.padding(
+      horizontal = Margins.horizontal,
+      vertical = Margins.vertical
+    )
+  ) {
+    BarChartRow(barChartDataModel)
+    DrawValueLocation(barChartDataModel) {
+      barChartDataModel.labelLocation = it
     }
+    AddOrRemoveBar(barChartDataModel)
+  }
 }
 
 @Composable
 fun DrawValueLocation(
-    barChartDataModel: BarChartDataModel,
-    newLocation: (DrawLocation) -> Unit
+  barChartDataModel: BarChartDataModel,
+  newLocation: (DrawLocation) -> Unit
 ) {
-    val selectedAlignment = remember(barChartDataModel.labelDrawer) {
-        barChartDataModel.labelLocation
-    }
+  val selectedAlignment = remember(barChartDataModel.labelDrawer) {
+    barChartDataModel.labelLocation
+  }
 
+  Row(
+    modifier = Modifier.fillMaxWidth()
+      .padding(top = Margins.verticalLarge),
+    verticalAlignment = CenterVertically
+  ) {
     Row(
-        modifier = Modifier.fillMaxWidth()
-            .padding(top = Margins.verticalLarge),
-        verticalAlignment = CenterVertically
+      horizontalArrangement = Arrangement.SpaceEvenly,
+      modifier = Modifier.fillMaxWidth()
+        .padding(horizontal = Margins.horizontal, vertical = Margins.vertical)
+        .align(CenterVertically)
     ) {
-        Row(
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            modifier = Modifier.fillMaxWidth()
-                .padding(horizontal = Margins.horizontal, vertical = Margins.vertical)
-                .align(CenterVertically)
-        ) {
-            DrawLocation.values().forEach { location ->
-                val color = if (selectedAlignment == location) {
-                    Color.Black
-                } else {
-                    Color.Transparent
-                }
-
-                TextButton(
-                    border = BorderStroke(2.dp, SolidColor(color)),
-                    onClick = { newLocation(location) }
-                ) {
-                    Text(location.name)
-                }
-            }
+      DrawLocation.values().forEach { location ->
+        val color = if (selectedAlignment == location) {
+          Color.Black
+        } else {
+          Color.Transparent
         }
+
+        TextButton(
+          border = BorderStroke(2.dp, SolidColor(color)),
+          onClick = { newLocation(location) }
+        ) {
+          Text(location.name)
+        }
+      }
     }
+  }
 }
 
 @Composable
 fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
+  Row(
+    modifier = Modifier
+      .fillMaxWidth()
+      .padding(vertical = Margins.vertical),
+    verticalAlignment = CenterVertically,
+    horizontalArrangement = Arrangement.Center
+  ) {
+    Button(
+      enabled = barChartDataModel.bars.size > 2,
+      onClick = { barChartDataModel.removeBar() },
+      shape = CircleShape
+    ) { Icon(Icons.Filled.Remove, contentDescription = "Remove bar from chart") }
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = Margins.vertical),
-        verticalAlignment = CenterVertically,
-        horizontalArrangement = Arrangement.Center
+      modifier = Modifier.padding(horizontal = Margins.horizontal),
+      verticalAlignment = CenterVertically
     ) {
-        Button(
-            enabled = barChartDataModel.bars.size > 2,
-            onClick = { barChartDataModel.removeBar() },
-            shape = CircleShape
-        ) { Icon(Icons.Filled.Remove, contentDescription = "Remove bar from chart") }
-        Row(
-            modifier = Modifier.padding(horizontal = Margins.horizontal),
-            verticalAlignment = CenterVertically
-        ) {
-            Text(text = "Bars: ")
-            Text(
-                text = barChartDataModel.bars.count().toString(),
-                style = TextStyle(
-                    fontWeight = FontWeight.ExtraBold,
-                    fontSize = 18.sp
-                )
-            )
-        }
-        Button(
-            enabled = barChartDataModel.bars.size < 6,
-            onClick = { barChartDataModel.addBar() },
-            shape = CircleShape
-        ) { Icon(Icons.Filled.Add, contentDescription = "Add bar to chart") }
+      Text(text = "Bars: ")
+      Text(
+        text = barChartDataModel.bars.count().toString(),
+        style = TextStyle(
+          fontWeight = FontWeight.ExtraBold,
+          fontSize = 18.sp
+        )
+      )
     }
+    Button(
+      enabled = barChartDataModel.bars.size < 6,
+      onClick = { barChartDataModel.addBar() },
+      shape = CircleShape
+    ) { Icon(Icons.Filled.Add, contentDescription = "Add bar to chart") }
+  }
 }
 
 @Composable
 private fun BarChartRow(barChartDataModel: BarChartDataModel) {
-    Row(
-        modifier = Modifier.fillMaxWidth()
-            .height(250.dp)
-            .padding(vertical = Margins.verticalLarge)
-    ) {
-        BarChart(
-            barChartData = barChartDataModel.barChartData,
-            labelDrawer = barChartDataModel.labelDrawer
-        )
-    }
+  Row(
+    modifier = Modifier.fillMaxWidth()
+      .height(250.dp)
+      .padding(vertical = Margins.verticalLarge)
+  ) {
+    BarChart(
+      barChartData = barChartDataModel.barChartData,
+      labelDrawer = barChartDataModel.labelDrawer
+    )
+  }
 }
 
 @Preview
