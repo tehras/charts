@@ -6,7 +6,6 @@ plugins {
 
 apply(from = rootProject.file("gradle/configure-android.gradle"))
 apply(from = rootProject.file("gradle/configure-compose.gradle"))
-apply(from = rootProject.file("gradle/jitpack-publish.gradle"))
 
 dependencies {
     implementation(Kotlin.stdLib)
