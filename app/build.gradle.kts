@@ -10,6 +10,7 @@ dependencies {
     implementation(Kotlin.stdLib)
 
     implementation(Android.appcompat)
+    implementation(Android.activityCompose)
     implementation(Compose.core)
     implementation(Compose.layout)
     implementation(Compose.material)
@@ -22,5 +23,4 @@ dependencies {
     implementation(project(":lib:pie"))
     implementation(project(":lib:bar"))
     implementation(project(":lib:line"))
-
 }
