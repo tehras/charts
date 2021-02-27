@@ -44,8 +44,7 @@ fun LineChartScreen() {
         title = { Text(text = "Line Chart") }
       )
     },
-    bodyContent = { LineChartScreenContent() }
-  )
+  ) { LineChartScreenContent() }
 }
 
 @Composable

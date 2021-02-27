@@ -45,8 +45,7 @@ fun PieChartScreen() {
         title = { Text(text = "Pie Chart") }
       )
     },
-    bodyContent = { PieChartScreenContent() }
-  )
+  ) { PieChartScreenContent() }
 }
 
 @Composable

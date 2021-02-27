@@ -48,8 +48,7 @@ fun BarChartScreen() {
         title = { Text(text = "Bar Chart") }
       )
     },
-    bodyContent = { BarChartScreenContent() }
-  )
+  ) { BarChartScreenContent() }
 }
 
 @Composable
@@ -80,13 +79,15 @@ fun DrawValueLocation(
   }
 
   Row(
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier
+      .fillMaxWidth()
       .padding(top = Margins.verticalLarge),
     verticalAlignment = CenterVertically
   ) {
     Row(
       horizontalArrangement = Arrangement.SpaceEvenly,
-      modifier = Modifier.fillMaxWidth()
+      modifier = Modifier
+        .fillMaxWidth()
         .padding(horizontal = Margins.horizontal, vertical = Margins.vertical)
         .align(CenterVertically)
     ) {
@@ -146,7 +147,8 @@ fun AddOrRemoveBar(barChartDataModel: BarChartDataModel) {
 @Composable
 private fun BarChartRow(barChartDataModel: BarChartDataModel) {
   Row(
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier
+      .fillMaxWidth()
       .height(250.dp)
       .padding(vertical = Margins.verticalLarge)
   ) {

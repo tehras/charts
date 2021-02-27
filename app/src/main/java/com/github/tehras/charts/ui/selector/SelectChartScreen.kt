@@ -23,9 +23,8 @@ import com.github.tehras.charts.ui.ChartScreenStatus
 @Composable
 fun SelectChartScreen() {
   Scaffold(
-    topBar = { TopAppBar(title = { Text(text = "Select Chart") }) },
-    bodyContent = { SelectChartScreenContent() }
-  )
+    topBar = { TopAppBar(title = { Text(text = "Select Chart") }) }
+  ) { SelectChartScreenContent() }
 }
 
 @Composable
