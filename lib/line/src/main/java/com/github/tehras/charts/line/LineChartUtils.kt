@@ -144,4 +144,57 @@ object LineChartUtils {
       }
     }
   }
+
+  fun calculateFillPath(drawableArea: Rect,
+                        lineChartData: LineChartData,
+                        transitionProgress: Float
+  ): Path = Path().apply {
+
+    // we start from the bottom left
+    moveTo(drawableArea.left, drawableArea.bottom)
+    var prevPointX : Float? = null
+    var prevPointLocation: Offset? = null
+    lineChartData.points.forEachIndexed { index, point ->
+      withProgress(
+        index = index,
+        transitionProgress = transitionProgress,
+        lineChartData = lineChartData
+      ) { progress ->
+        val pointLocation = calculatePointLocation(
+          drawableArea = drawableArea,
+          lineChartData = lineChartData,
+          point = point,
+          index = index
+        )
+
+        if (index == 0) {
+          lineTo(drawableArea.left, pointLocation.y)
+          lineTo(pointLocation.x, pointLocation.y)
+        } else {
+          if (progress <= 1f) {
+            // We have to change the `dy` based on the progress
+            val prevX = prevPointLocation!!.x
+            val prevY = prevPointLocation!!.y
+
+            val x = (pointLocation.x - prevX) * progress + prevX
+            val y = (pointLocation.y - prevY) * progress + prevY
+
+            lineTo(x, y)
+
+            prevPointX = x
+          } else {
+            lineTo(pointLocation.x, pointLocation.y)
+            prevPointX = pointLocation.x
+          }
+        }
+
+        prevPointLocation = pointLocation
+      }
+    }
+    // We need to connect the line to the end of the drawable area
+    prevPointX?.let { x->
+      lineTo(x, drawableArea.bottom)
+      lineTo(drawableArea.right, drawableArea.bottom)
+    } ?: lineTo(drawableArea.left, drawableArea.bottom)
+  }
 }
