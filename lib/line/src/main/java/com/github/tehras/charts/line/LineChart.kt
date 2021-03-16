@@ -17,7 +17,6 @@ import com.github.tehras.charts.line.LineChartUtils.calculateXAxisDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.calculateXAxisLabelsDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.calculateYAxisDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.withProgress
-import com.github.tehras.charts.line.renderer.line.GradientLineShader
 import com.github.tehras.charts.line.renderer.line.LineDrawer
 import com.github.tehras.charts.line.renderer.line.LineShader
 import com.github.tehras.charts.line.renderer.line.NoLineShader
