@@ -20,6 +20,7 @@ import com.github.tehras.charts.line.LineChartUtils.withProgress
 import com.github.tehras.charts.line.renderer.line.GradientLineShader
 import com.github.tehras.charts.line.renderer.line.LineDrawer
 import com.github.tehras.charts.line.renderer.line.LineShader
+import com.github.tehras.charts.line.renderer.line.NoLineShader
 import com.github.tehras.charts.line.renderer.line.SolidLineDrawer
 import com.github.tehras.charts.line.renderer.point.FilledCircularPointDrawer
 import com.github.tehras.charts.line.renderer.point.PointDrawer
@@ -36,7 +37,7 @@ fun LineChart(
   animation: AnimationSpec<Float> = simpleChartAnimation(),
   pointDrawer: PointDrawer = FilledCircularPointDrawer(),
   lineDrawer: LineDrawer = SolidLineDrawer(),
-  lineShader: LineShader = GradientLineShader(),
+  lineShader: LineShader = NoLineShader,
   xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),
   yAxisDrawer: YAxisDrawer = SimpleYAxisDrawer(),
   horizontalOffset: Float = 5f
