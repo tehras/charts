@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import com.github.tehras.charts.line.LineChartUtils.calculateDrawableArea
+import com.github.tehras.charts.line.LineChartUtils.calculateFillPath
 import com.github.tehras.charts.line.LineChartUtils.calculateLinePath
 import com.github.tehras.charts.line.LineChartUtils.calculatePointLocation
 import com.github.tehras.charts.line.LineChartUtils.calculateXAxisDrawableArea
@@ -17,6 +18,8 @@ import com.github.tehras.charts.line.LineChartUtils.calculateXAxisLabelsDrawable
 import com.github.tehras.charts.line.LineChartUtils.calculateYAxisDrawableArea
 import com.github.tehras.charts.line.LineChartUtils.withProgress
 import com.github.tehras.charts.line.renderer.line.LineDrawer
+import com.github.tehras.charts.line.renderer.line.LineShader
+import com.github.tehras.charts.line.renderer.line.NoLineShader
 import com.github.tehras.charts.line.renderer.line.SolidLineDrawer
 import com.github.tehras.charts.line.renderer.point.FilledCircularPointDrawer
 import com.github.tehras.charts.line.renderer.point.PointDrawer
@@ -33,6 +36,7 @@ fun LineChart(
   animation: AnimationSpec<Float> = simpleChartAnimation(),
   pointDrawer: PointDrawer = FilledCircularPointDrawer(),
   lineDrawer: LineDrawer = SolidLineDrawer(),
+  lineShader: LineShader = NoLineShader,
   xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),
   yAxisDrawer: YAxisDrawer = SimpleYAxisDrawer(),
   horizontalOffset: Float = 5f
@@ -76,6 +80,16 @@ fun LineChart(
         drawScope = this,
         canvas = canvas,
         linePath = calculateLinePath(
+          drawableArea = chartDrawableArea,
+          lineChartData = lineChartData,
+          transitionProgress = transitionAnimation.value
+        )
+      )
+
+      lineShader.fillLine(
+        drawScope = this,
+        canvas = canvas,
+        fillPath = calculateFillPath(
           drawableArea = chartDrawableArea,
           lineChartData = lineChartData,
           transitionProgress = transitionAnimation.value
