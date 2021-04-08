@@ -2,7 +2,7 @@
 
 object Versions {
     const val composeCompilerVersion = "1.4.31"
-    const val compose = "1.0.0-beta03"
+    const val compose = "1.0.0-beta04"
     const val kotlin = "1.4.31"
     const val targetSdk = 30
     const val buildVersion = "30.0.2"
