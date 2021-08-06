@@ -1,20 +1,8 @@
 package com.github.tehras.charts.ui.bar
 
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
-import androidx.compose.material.TopAppBar
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
@@ -23,8 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -92,14 +78,8 @@ fun DrawValueLocation(
         .align(CenterVertically)
     ) {
       DrawLocation.values().forEach { location ->
-        val color = if (selectedAlignment == location) {
-          Color.Black
-        } else {
-          Color.Transparent
-        }
-
-        TextButton(
-          border = BorderStroke(2.dp, SolidColor(color)),
+        OutlinedButton(
+          border = ButtonDefaults.outlinedBorder.takeIf { selectedAlignment == location },
           onClick = { newLocation(location) }
         ) {
           Text(location.name)
