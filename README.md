@@ -19,7 +19,7 @@ fun MyChartParent() {
         pieChartData = PieChartData(listOf(Slice(...), Slice(...),....)),
         // Optional properties.
         modifier = Modifier.fillMaxSize(),
-        animation = SimpleChartAnimation,
+        animation = simpleChartAnimation(),
         sliceDrawer = SimpleSliceDrawer()
     )
 }
@@ -34,7 +34,7 @@ fun MyBarChartParent() {
         barChartData = BarChartData(bars = listOf(Bar(label = "Bar Label", value = 100f, color = Color.Red)),
         // Optional properties.
         modifier = Modifier.fillMaxSize(),
-        animation = SimpleChartAnimation,
+        animation = simpleChartAnimation(),
         barDrawer = SimpleBarDrawer(),
         xAxisDrawer = SimpleXAxisDrawer(),
         yAxisDrawer = SimpleYAxisDrawer(),
@@ -49,10 +49,10 @@ fun MyBarChartParent() {
 @Composable
 fun MyLineChartParent() {
     LineChart(
-        lineChartData: LineChartData,
+        lineChartData = LineChartData(points = listOf(LineChartData.Point(1f,"Label 1"), ...)),
         // Optional properties.
         modifier = Modifier.fillMaxSize(),
-        animation = SimpleChartAnimation,
+        animation = simpleChartAnimation(),
         pointDrawer = FilledCircularPointDrawer(),
         lineDrawer = SolidLineDrawer(),
         xAxisDrawer = SimpleXAxisDrawer(),
