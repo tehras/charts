@@ -3,8 +3,8 @@
 This is an exploratory playground library to figure out how to Draw and animate using Android Jetpack Compose library.
 Currently this is using `1.0.1` library.
 
-[![Release](https://jitpack.io/v/tehras/charts.svg)]
-(https://jitpack.io/#tehras/charts)
+[![Release](https://jitpack.io/v/lacky1991/compose-charts.svg)]
+(https://jitpack.io/#lacky1991/compose-charts)
 
 ## How it looks:
 
