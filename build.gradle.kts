@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
   dependencies {
-    classpath("com.android.tools.build:gradle:7.0.0")
+    classpath("com.android.tools.build:gradle:7.1.2")
     classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
   }
 
@@ -23,7 +23,7 @@ subprojects {
       // Allow warnings when running from IDE, makes it easier to experiment.
       allWarningsAsErrors = true
 
-      jvmTarget = "1.8"
+      jvmTarget = "11"
     }
   }
 }
