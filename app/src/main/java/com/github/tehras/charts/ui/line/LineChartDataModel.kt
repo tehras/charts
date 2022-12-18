@@ -27,6 +27,17 @@ class LineChartDataModel {
       )
     )
   )
+
+  var lineChartData2 by mutableStateOf(
+    LineChartData(
+      points = listOf(
+        Point(randomYValue(), "Label1"),
+        Point(randomYValue(), "Label2"),
+        Point(randomYValue(), "Label3"),
+
+      )
+    )
+  )
   var horizontalOffset by mutableStateOf(5f)
   var pointDrawerType by mutableStateOf(Filled)
   val pointDrawer: PointDrawer
