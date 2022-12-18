@@ -3,8 +3,10 @@ package com.github.tehras.charts.ui.line
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.graphics.Color
 import com.github.tehras.charts.line.LineChartData
 import com.github.tehras.charts.line.LineChartData.Point
+import com.github.tehras.charts.line.renderer.line.SolidLineDrawer
 import com.github.tehras.charts.line.renderer.point.FilledCircularPointDrawer
 import com.github.tehras.charts.line.renderer.point.HollowCircularPointDrawer
 import com.github.tehras.charts.line.renderer.point.NoPointDrawer
@@ -24,7 +26,8 @@ class LineChartDataModel {
         Point(randomYValue(), "Label5"),
         Point(randomYValue(), "Label6"),
         Point(randomYValue(), "Label7")
-      )
+      ),
+        lineDrawer = SolidLineDrawer(),
     )
   )
 
@@ -35,6 +38,9 @@ class LineChartDataModel {
         Point(randomYValue(), "Label2"),
         Point(randomYValue(), "Label3"),
 
+      ),
+      lineDrawer = SolidLineDrawer(
+        color = Color(0xFF00FF00)
       )
     )
   )

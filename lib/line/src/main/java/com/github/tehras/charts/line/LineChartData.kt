@@ -1,10 +1,13 @@
 package com.github.tehras.charts.line
 
+import com.github.tehras.charts.line.renderer.line.LineDrawer
+
 data class LineChartData(
   val points: List<Point>,
   /** This is percentage we pad yValue by.**/
   val padBy: Float = 20f,
-  val startAtZero: Boolean = false
+  val startAtZero: Boolean = false,
+  val lineDrawer: LineDrawer,
 ) {
   init {
     require(padBy in 0f..100f)

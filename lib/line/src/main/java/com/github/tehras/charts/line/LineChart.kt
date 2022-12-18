@@ -42,7 +42,6 @@ fun LineChart(
     ?: emptyList(),
   animation: AnimationSpec<Float> = simpleChartAnimation(),
   pointDrawer: PointDrawer = FilledCircularPointDrawer(),
-  lineDrawer: LineDrawer = SolidLineDrawer(),
   lineShader: LineShader = NoLineShader,
   xAxisDrawer: XAxisDrawer = SimpleXAxisDrawer(),
   yAxisDrawer: YAxisDrawer = SimpleYAxisDrawer(),
@@ -127,7 +126,7 @@ fun LineChart(
           lineChartData = lineChartData,
           transitionAnimation = transitionAnimation[index],
           pointDrawer = pointDrawer,
-          lineDrawer = lineDrawer,
+          lineDrawer = lineChartData.lineDrawer,
           lineShader = lineShader,
           chartDrawableArea = chartDrawableArea
         )
