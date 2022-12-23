@@ -116,7 +116,7 @@ fun LineChart(
         drawScope = this,
         canvas = canvas,
         drawableArea = yAxisDrawableArea,
-        minValue = linesChartData.minOf { it.maxYValue },
+        minValue = linesChartData.minOf { it.minYValue },
         maxValue = linesChartData.maxOf { it.maxYValue }
       )
 
