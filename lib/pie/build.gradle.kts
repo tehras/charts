@@ -22,3 +22,6 @@ dependencies {
   // Previews weren't working when using debugImplementation
   implementation(Compose.tooling)
 }
+android {
+    namespace = "com.github.tehras.charts.piechart"
+}
