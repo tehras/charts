@@ -5,6 +5,24 @@ This is an exploratory playground library to figure out how to Draw and animate 
 [![Release](https://jitpack.io/v/tehras/charts.svg)]
 (https://jitpack.io/#tehras/charts)
 
+## Implementation:
+
+build.gradle (app)
+```groovy
+dependecies {
+    implementation 'com.github.tehras:charts:beta-01'
+}
+```
+
+settings.gradle
+```
+repositories {
+    google()
+    mavenCentral()
+    maven { url 'https://jitpack.io'}
+}
+```
+
 ## How it looks:
 
 <img src="/assets/pie_chart.gif" width="200"> <img src="/assets/bar_chart.gif" width="200"> <img src="/assets/line_chart.gif" width="200">
