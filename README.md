@@ -10,7 +10,7 @@ This is an exploratory playground library to figure out how to Draw and animate 
 build.gradle (app)
 ```groovy
 dependecies {
-    implementation 'com.github.GabrielGircenko:charts:-SNAPSHOT'
+    implementation 'com.github.tehras:charts:0.2.1-alpha'
 }
 ```
 
