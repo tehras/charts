@@ -20,3 +20,6 @@ dependencies {
   implementation(Compose.runtime)
   debugImplementation(Compose.tooling)
 }
+android {
+    namespace = "com.github.tehras.charts.line"
+}

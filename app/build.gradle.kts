@@ -24,3 +24,6 @@ dependencies {
     implementation(project(":lib:bar"))
     implementation(project(":lib:line"))
 }
+android {
+    namespace = "com.github.tehras.charts"
+}

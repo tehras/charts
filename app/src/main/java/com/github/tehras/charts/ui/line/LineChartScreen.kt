@@ -110,10 +110,12 @@ fun LineChartRow(lineChartDataModel: LineChartDataModel) {
       .height(250.dp)
       .fillMaxWidth()
   ) {
+
+
     LineChart(
-      lineChartData = lineChartDataModel.lineChartData,
+      linesChartData = listOf(lineChartDataModel.lineChartData, lineChartDataModel.lineChartData2),
       horizontalOffset = lineChartDataModel.horizontalOffset,
-      pointDrawer = lineChartDataModel.pointDrawer
+      pointDrawer = lineChartDataModel.pointDrawer,
     )
   }
 }

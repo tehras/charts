@@ -1,10 +1,27 @@
 # Compose Charts
 
 This is an exploratory playground library to figure out how to Draw and animate using Android Jetpack Compose library.
-Currently this is using `1.0.1` library.
 
 [![Release](https://jitpack.io/v/tehras/charts.svg)]
 (https://jitpack.io/#tehras/charts)
+
+## Implementation:
+
+build.gradle (app)
+```groovy
+dependecies {
+    implementation 'com.github.GabrielGircenko:charts:-SNAPSHOT'
+}
+```
+
+settings.gradle
+```
+repositories {
+    google()
+    mavenCentral()
+    maven { url 'https://jitpack.io'}
+}
+```
 
 ## How it looks:
 
@@ -49,7 +66,7 @@ fun MyBarChartParent() {
 @Composable
 fun MyLineChartParent() {
     LineChart(
-        lineChartData = LineChartData(points = listOf(LineChartData.Point(1f,"Label 1"), ...)),
+        linesChartData = listOf(LineChartData(points = listOf(LineChartData.Point(1f,"Label 1"), ...))),
         // Optional properties.
         modifier = Modifier.fillMaxSize(),
         animation = simpleChartAnimation(),
@@ -57,7 +74,8 @@ fun MyLineChartParent() {
         lineDrawer = SolidLineDrawer(),
         xAxisDrawer = SimpleXAxisDrawer(),
         yAxisDrawer = SimpleYAxisDrawer(),
-        horizontalOffset = 5f
+        horizontalOffset = 5f,
+        labels = listOf("label 1" ...) 
     )
 }
 ```
