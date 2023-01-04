@@ -170,28 +170,30 @@ object LineChartUtils {
           index = index
         )
 
-        if (index == 0) {
-          lineTo(drawableArea.left, pointLocation.y)
-          lineTo(pointLocation.x, pointLocation.y)
-        } else {
-          if (progress <= 1f) {
-            // We have to change the `dy` based on the progress
-            val prevX = prevPointLocation!!.x
-            val prevY = prevPointLocation!!.y
-
-            val x = (pointLocation.x - prevX) * progress + prevX
-            val y = (pointLocation.y - prevY) * progress + prevY
-
-            lineTo(x, y)
-
-            prevPointX = x
-          } else {
+        if (pointLocation.isSpecified) {
+          if (index == 0) {
+            lineTo(drawableArea.left, pointLocation.y)
             lineTo(pointLocation.x, pointLocation.y)
-            prevPointX = pointLocation.x
-          }
-        }
+          } else {
+            if (progress <= 1f) {
+              // We have to change the `dy` based on the progress
+              val prevX = prevPointLocation!!.x
+              val prevY = prevPointLocation!!.y
 
-        prevPointLocation = pointLocation
+              val x = (pointLocation.x - prevX) * progress + prevX
+              val y = (pointLocation.y - prevY) * progress + prevY
+
+              lineTo(x, y)
+
+              prevPointX = x
+            } else {
+              lineTo(pointLocation.x, pointLocation.y)
+              prevPointX = pointLocation.x
+            }
+          }
+
+          prevPointLocation = pointLocation
+        }
       }
     }
     // We need to connect the line to the end of the drawable area
