@@ -1,16 +1,15 @@
 # Compose Charts
 
-This is an exploratory playground library to figure out how to Draw and animate using Android Jetpack Compose library.
-
-[![Release](https://jitpack.io/v/tehras/charts.svg)]
-(https://jitpack.io/#tehras/charts)
+This is a library that Draws and animates charts using Android Jetpack Compose library.
 
 ## Implementation:
+
+latest_release  =  ![Release](https://jitpack.io/v/tehras/charts.svg)
 
 build.gradle (app)
 ```groovy
 dependecies {
-    implementation 'com.github.tehras:charts:0.2.2-alpha'
+    implementation "com.github.tehras:charts:$latest_release"
 }
 ```
 
@@ -34,10 +33,10 @@ repositories {
 fun MyChartParent() {
     PieChart(
         pieChartData = PieChartData(listOf(Slice(...), Slice(...),....)),
-        // Optional properties.
-        modifier = Modifier.fillMaxSize(),
-        animation = simpleChartAnimation(),
-        sliceDrawer = SimpleSliceDrawer()
+    // Optional properties.
+    modifier = Modifier.fillMaxSize(),
+    animation = simpleChartAnimation(),
+    sliceDrawer = SimpleSliceDrawer()
     )
 }
 ```
@@ -49,14 +48,14 @@ fun MyChartParent() {
 fun MyBarChartParent() {
     fun BarChart(
         barChartData = BarChartData(bars = listOf(Bar(label = "Bar Label", value = 100f, color = Color.Red)),
-        // Optional properties.
-        modifier = Modifier.fillMaxSize(),
-        animation = simpleChartAnimation(),
-        barDrawer = SimpleBarDrawer(),
-        xAxisDrawer = SimpleXAxisDrawer(),
-        yAxisDrawer = SimpleYAxisDrawer(),
-        labelDrawer = SimpleValueDrawer()
-    ) 
+            // Optional properties.
+            modifier = Modifier.fillMaxSize(),
+            animation = simpleChartAnimation(),
+            barDrawer = SimpleBarDrawer(),
+            xAxisDrawer = SimpleXAxisDrawer(),
+            yAxisDrawer = SimpleYAxisDrawer(),
+            labelDrawer = SimpleValueDrawer()
+        )
 }
 ```
 
@@ -67,15 +66,15 @@ fun MyBarChartParent() {
 fun MyLineChartParent() {
     LineChart(
         linesChartData = listOf(LineChartData(points = listOf(LineChartData.Point(1f,"Label 1"), ...))),
-        // Optional properties.
-        modifier = Modifier.fillMaxSize(),
-        animation = simpleChartAnimation(),
-        pointDrawer = FilledCircularPointDrawer(),
-        lineDrawer = SolidLineDrawer(),
-        xAxisDrawer = SimpleXAxisDrawer(),
-        yAxisDrawer = SimpleYAxisDrawer(),
-        horizontalOffset = 5f,
-        labels = listOf("label 1" ...) 
+    // Optional properties.
+    modifier = Modifier.fillMaxSize(),
+    animation = simpleChartAnimation(),
+    pointDrawer = FilledCircularPointDrawer(),
+    lineDrawer = SolidLineDrawer(),
+    xAxisDrawer = SimpleXAxisDrawer(),
+    yAxisDrawer = SimpleYAxisDrawer(),
+    horizontalOffset = 5f,
+    labels = listOf("label 1" ...)
     )
 }
 ```

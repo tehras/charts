@@ -3,6 +3,7 @@ package com.github.tehras.charts.line
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.geometry.isSpecified
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
@@ -123,24 +124,26 @@ object LineChartUtils {
           index = index
         )
 
-        if (index == 0) {
-          moveTo(pointLocation.x, pointLocation.y)
-        } else {
-          if (progress <= 1f) {
-            // We have to change the `dy` based on the progress
-            val prevX = prevPointLocation!!.x
-            val prevY = prevPointLocation!!.y
-
-            val x = (pointLocation.x - prevX) * progress + prevX
-            val y = (pointLocation.y - prevY) * progress + prevY
-
-            lineTo(x, y)
+        if (pointLocation.isSpecified) {
+          if (index == 0) {
+            moveTo(pointLocation.x, pointLocation.y)
           } else {
-            lineTo(pointLocation.x, pointLocation.y)
-          }
-        }
+            if (progress <= 1f) {
+              // We have to change the `dy` based on the progress
+              val prevX = prevPointLocation!!.x
+              val prevY = prevPointLocation!!.y
 
-        prevPointLocation = pointLocation
+              val x = (pointLocation.x - prevX) * progress + prevX
+              val y = (pointLocation.y - prevY) * progress + prevY
+
+              lineTo(x, y)
+            } else {
+              lineTo(pointLocation.x, pointLocation.y)
+            }
+          }
+
+          prevPointLocation = pointLocation
+        }
       }
     }
   }
@@ -167,28 +170,30 @@ object LineChartUtils {
           index = index
         )
 
-        if (index == 0) {
-          lineTo(drawableArea.left, pointLocation.y)
-          lineTo(pointLocation.x, pointLocation.y)
-        } else {
-          if (progress <= 1f) {
-            // We have to change the `dy` based on the progress
-            val prevX = prevPointLocation!!.x
-            val prevY = prevPointLocation!!.y
-
-            val x = (pointLocation.x - prevX) * progress + prevX
-            val y = (pointLocation.y - prevY) * progress + prevY
-
-            lineTo(x, y)
-
-            prevPointX = x
-          } else {
+        if (pointLocation.isSpecified) {
+          if (index == 0) {
+            lineTo(drawableArea.left, pointLocation.y)
             lineTo(pointLocation.x, pointLocation.y)
-            prevPointX = pointLocation.x
-          }
-        }
+          } else {
+            if (progress <= 1f) {
+              // We have to change the `dy` based on the progress
+              val prevX = prevPointLocation!!.x
+              val prevY = prevPointLocation!!.y
 
-        prevPointLocation = pointLocation
+              val x = (pointLocation.x - prevX) * progress + prevX
+              val y = (pointLocation.y - prevY) * progress + prevY
+
+              lineTo(x, y)
+
+              prevPointX = x
+            } else {
+              lineTo(pointLocation.x, pointLocation.y)
+              prevPointX = pointLocation.x
+            }
+          }
+
+          prevPointLocation = pointLocation
+        }
       }
     }
     // We need to connect the line to the end of the drawable area
