@@ -33,10 +33,11 @@ repositories {
 fun MyChartParent() {
     PieChart(
         pieChartData = PieChartData(listOf(Slice(...), Slice(...),....)),
-    // Optional properties.
-    modifier = Modifier.fillMaxSize(),
-    animation = simpleChartAnimation(),
-    sliceDrawer = SimpleSliceDrawer()
+
+        // Optional properties.
+        modifier = Modifier.fillMaxSize(),
+        animation = simpleChartAnimation(),
+        sliceDrawer = SimpleSliceDrawer()
     )
 }
 ```
@@ -46,16 +47,17 @@ fun MyChartParent() {
 ```kotlin
 @Composable
 fun MyBarChartParent() {
-    fun BarChart(
+    BarChart(
         barChartData = BarChartData(bars = listOf(Bar(label = "Bar Label", value = 100f, color = Color.Red)),
-            // Optional properties.
-            modifier = Modifier.fillMaxSize(),
-            animation = simpleChartAnimation(),
-            barDrawer = SimpleBarDrawer(),
-            xAxisDrawer = SimpleXAxisDrawer(),
-            yAxisDrawer = SimpleYAxisDrawer(),
-            labelDrawer = SimpleValueDrawer()
-        )
+
+        // Optional properties.
+        modifier = Modifier.fillMaxSize(),
+        animation = simpleChartAnimation(),
+        barDrawer = SimpleBarDrawer(),
+        xAxisDrawer = SimpleXAxisDrawer(),
+        yAxisDrawer = SimpleYAxisDrawer(),
+        labelDrawer = SimpleValueDrawer()
+    )
 }
 ```
 
@@ -66,15 +68,16 @@ fun MyBarChartParent() {
 fun MyLineChartParent() {
     LineChart(
         linesChartData = listOf(LineChartData(points = listOf(LineChartData.Point(1f,"Label 1"), ...))),
-    // Optional properties.
-    modifier = Modifier.fillMaxSize(),
-    animation = simpleChartAnimation(),
-    pointDrawer = FilledCircularPointDrawer(),
-    lineDrawer = SolidLineDrawer(),
-    xAxisDrawer = SimpleXAxisDrawer(),
-    yAxisDrawer = SimpleYAxisDrawer(),
-    horizontalOffset = 5f,
-    labels = listOf("label 1" ...)
+
+        // Optional properties.
+        modifier = Modifier.fillMaxSize(),
+        animation = simpleChartAnimation(),
+        pointDrawer = FilledCircularPointDrawer(),
+        lineDrawer = SolidLineDrawer(),
+        xAxisDrawer = SimpleXAxisDrawer(),
+        yAxisDrawer = SimpleYAxisDrawer(),
+        horizontalOffset = 5f,
+        labels = listOf("label 1" ...)
     )
 }
 ```
