@@ -1,19 +1,14 @@
 android {
-    buildFeatures { compose true }
-
-    // Set both the Java and Kotlin compilers to target Java 8.
+    buildFeatures {
+        compose true
+    }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-    composeOptions {
-        kotlinCompilerVersion Versions.composeCompilerVersion
-        kotlinCompilerExtensionVersion Versions.compose
+        jvmTarget = "17"
     }
 }

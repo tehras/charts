@@ -1,11 +1,11 @@
 @file:JvmName("Deps")
 
 object Versions {
-    const val kotlin = "1.7.10"
+    const val kotlin = "2.1.0"
     const val composeCompilerVersion = kotlin
-    const val compose = "1.3.1"
-    const val targetSdk = 33
-    const val buildVersion = "33.0.1"
+    const val compose = "1.7.6"
+    const val targetSdk = 35
+    const val buildVersion = "35.0.0"
 }
 
 object Compose {
@@ -20,8 +20,8 @@ object Compose {
 }
 
 object Android {
-    const val activityCompose = "androidx.activity:activity-compose:1.6.1"
-    const val appcompat = "androidx.appcompat:appcompat:1.5.1"
+    const val activityCompose = "androidx.activity:activity-compose:1.10.0"
+    const val appcompat = "androidx.appcompat:appcompat:1.7.0"
 }
 
 object Kotlin {
