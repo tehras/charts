@@ -29,15 +29,17 @@ fun LineChartScreen() {
         title = { Text(text = "Line Chart") }
       )
     },
-  ) { LineChartScreenContent() }
+  ) { paddingValues ->
+    LineChartScreenContent(modifier = Modifier.padding(paddingValues))
+  }
 }
 
 @Composable
-fun LineChartScreenContent() {
+fun LineChartScreenContent(modifier: Modifier = Modifier) {
   val lineChartDataModel = LineChartDataModel()
 
   Column(
-    modifier = Modifier.padding(
+    modifier = modifier.padding(
       horizontal = horizontal,
       vertical = vertical
     )

@@ -34,18 +34,21 @@ fun BarChartScreen() {
         title = { Text(text = "Bar Chart") }
       )
     },
-  ) { BarChartScreenContent() }
+  ) { paddingValues ->
+    BarChartScreenContent(modifier = Modifier.padding(paddingValues))
+  }
 }
 
 @Composable
-private fun BarChartScreenContent() {
+private fun BarChartScreenContent(modifier: Modifier = Modifier) {
   val barChartDataModel = BarChartDataModel()
 
   Column(
-    modifier = Modifier.padding(
-      horizontal = Margins.horizontal,
-      vertical = Margins.vertical
-    )
+    modifier = modifier
+      .padding(
+        horizontal = Margins.horizontal,
+        vertical = Margins.vertical
+      )
   ) {
     BarChartRow(barChartDataModel)
     DrawValueLocation(barChartDataModel) {

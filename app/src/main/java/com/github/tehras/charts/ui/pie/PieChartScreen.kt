@@ -45,15 +45,17 @@ fun PieChartScreen() {
         title = { Text(text = "Pie Chart") }
       )
     },
-  ) { PieChartScreenContent() }
+  ) { paddingValues ->
+    PieChartScreenContent(modifier = Modifier.padding(paddingValues))
+  }
 }
 
 @Composable
-private fun PieChartScreenContent() {
+private fun PieChartScreenContent(modifier: Modifier = Modifier) {
   val pieChartDataModel = remember { PieChartDataModel() }
 
   Column(
-    modifier = Modifier.padding(
+    modifier = modifier.padding(
       horizontal = Margins.horizontal,
       vertical = Margins.vertical
     )

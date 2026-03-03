@@ -24,13 +24,15 @@ import com.github.tehras.charts.ui.ChartScreenStatus
 fun SelectChartScreen() {
   Scaffold(
     topBar = { TopAppBar(title = { Text(text = "Select Chart") }) }
-  ) { SelectChartScreenContent() }
+  ) { paddingValues ->
+    SelectChartScreenContent(modifier = Modifier.padding(paddingValues))
+  }
 }
 
 @Composable
-private fun SelectChartScreenContent() {
+private fun SelectChartScreenContent(modifier: Modifier = Modifier) {
   Column(
-    modifier = Modifier.fillMaxSize(),
+    modifier = modifier.fillMaxSize(),
     verticalArrangement = Arrangement.Center,
     horizontalAlignment = Alignment.CenterHorizontally
   ) {
