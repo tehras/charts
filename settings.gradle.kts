@@ -5,8 +5,8 @@ pluginManagement {
         gradlePluginPortal()
     }
     plugins {
-        id("com.android.application") version "9.0.0"
-        id("com.android.library") version "9.0.0"
+        id("com.android.application") version "9.0.1"
+        id("com.android.library") version "9.0.1"
         kotlin("android") version "2.2.10"
         kotlin("plugin.compose") version "2.2.10"
     }
